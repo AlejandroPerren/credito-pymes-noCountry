@@ -1,3 +1,9 @@
+import HeroSection from "@/components/organism/HeroSection";
+
 export default function Home() {
-  return <div>HOME_PAGE</div>;
+  return (
+    <div>
+      <HeroSection />
+    </div>
+  );
 }
