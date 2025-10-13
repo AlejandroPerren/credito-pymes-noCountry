@@ -11,7 +11,6 @@ import { PrismaModule } from './prisma/prisma.module';
       load: [configuration],
       envFilePath: `./env/.env.${process.env.NODE_ENV || 'development'}`,
       isGlobal: true,
-      // ExportModule,
     }),
     UsersModule,
     PrismaModule,
