@@ -1,14 +1,23 @@
-// auth.service.ts
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Response } from 'express';
+import { UsersService } from '../users/users.service';
+import { comparePassword } from '../helpers/bcrypt.helper';
 
 @Injectable()
 export class AuthService {
-  constructor(private jwtService: JwtService) {}
+  constructor(
+    private jwtService: JwtService,
+    private usersService: UsersService,
+  ) {}
 
-  login(userId: string, res: Response) {
-    const payload = { sub: userId };
+  async login(email: string, pass: string, res: Response) {
+    const user = await this.usersService.findOne({ email });
+    if (!user || !(await comparePassword(pass, user.password))) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    const payload = { sub: user.dni, email: user.email };
     const token = this.jwtService.sign(payload, { expiresIn: '1h' });
 
     res.cookie('access_token', token, {
