@@ -1,4 +1,4 @@
-export const howItWorksItems = [
+export const HOW_IT_WORKS_ITEMS = [
   {
     step: 1,
     title: "Completa tu Perfil",
