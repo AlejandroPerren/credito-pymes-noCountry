@@ -1,15 +1,15 @@
 export const PUBLIC_NAV_ITEMS = [
   {
-    label: "Label1",
-    link: "/label1",
+    label: "Cómo Funciona",
+    link: "/#como-funciona",
   },
   {
-    label: "Label2",
-    link: "/label2",
+    label: "Beneficios",
+    link: "/#benefits",
   },
   {
-    label: "Label3",
-    link: "/label3",
+    label: "Contacto",
+    link: "/",
   },
 ];
 

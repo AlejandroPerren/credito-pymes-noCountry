@@ -3,7 +3,7 @@ import { CircleCheck } from "lucide-react";
 
 export default function Benefits() {
   return (
-    <div className="max-w-[1440px] m-auto flex justify-center gap-brand-xl p-brand-3xl">
+    <div className="max-w-[1440px] m-auto flex justify-center gap-brand-xl p-brand-3xl" id="benefits">
       <Image
         src="/png/benefices-image.png"
         alt="beneficiaries"
