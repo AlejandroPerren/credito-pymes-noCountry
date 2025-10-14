@@ -232,6 +232,10 @@
   --leading-brand-p: 1.5;
   --leading-brand-p-small: 1.5;
   --leading-brand-p-mini: 1.5;
+
+  /* OTROS */
+  /* Estrellas */
+  --color-star: var(--primitive-yellow-500);
 }
 
 @layer utilities {
