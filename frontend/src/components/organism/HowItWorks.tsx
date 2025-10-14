@@ -3,7 +3,7 @@ import { Card } from "../ui/card";
 
 export default function HowItWorks() {
   return (
-    <div className="flex flex-col gap-brand-2xl px-brand-3xl py-brand-2xl">
+    <div className="flex flex-col gap-brand-2xl px-brand-3xl py-brand-2xl" id="como-funciona">
       <div className="flex flex-col items-center gap-brand-md">
         <h2 className="heading-2">¿Cómo Funciona?</h2>
         <p className="paragraph-regular text-muted-foreground">

@@ -55,9 +55,9 @@ export default function NavBar() {
       {!isLoggedIn && (
         <div className="flex gap-brand-lg">
           <Button size="lg" variant="outline">
-            Label
+            Iniciar Sesión
           </Button>
-          <Button size="lg">Label</Button>
+          <Button size="lg">Crear Cuenta</Button>
         </div>
       )}
     </nav>
