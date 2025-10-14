@@ -15,9 +15,75 @@ datasource db {
 }
 
 model User {
-  dni      String @id @unique
-  name     String
-  lastname String
-  email    String @unique
-  password String
+  dni       String @id @unique 
+  firstName String 
+  lastName  String 
+  email     String @unique 
+  password  String 
+
+  credits Credit[] // Créditos solicitados por el usuario
+  Company Company[] // Empresas registradas por el usuario
+}
+
+model Company {
+  id                Int       @id @default(autoincrement()) // ID autoincremental de la empresa
+  businessName      String // Razón social de la empresa
+  taxId             String    @unique // CUIT/CUIL único de la empresa
+  address           String // Dirección fiscal o comercial
+  phone             String? // Teléfono (opcional)
+  activity          String? // Actividad económica (opcional)
+  incorporationDate DateTime? // Fecha de constitución (opcional)
+  annualRevenue     Float? // Ingresos anuales estimados (opcional)
+  userDni String // DNI del usuario que la registró
+  user    User   @relation(fields: [userDni], references: [dni]) // Relación con el usuario creador
+  credits Credit[] // Créditos solicitados por esta empresa
+}
+
+model Credit {
+  id                 Int          @id @default(autoincrement()) // ID único del crédito
+  requestedAmount    Float // Monto solicitado
+  termMonths         Int // Plazo en meses
+  interestRate       Float // Tasa de interés aplicada
+  status             CreditStatus @default(PENDING) // Estado del crédito (pendiente, aprobado, etc.)
+  requestDate        DateTime     @default(now()) // Fecha de solicitud
+  approvalDate       DateTime? // Fecha de aprobación (si aplica)
+  digitalSignatureId Int?         @unique // ID de firma digital asociada (único)
+
+  companyId Int // ID de la empresa solicitante
+  company   Company @relation(fields: [companyId], references: [id]) // Relación con la empresa
+
+  userDni String // DNI del usuario solicitante
+  user    User   @relation(fields: [userDni], references: [dni]) // Relación con el usuario solicitante
+
+  digitalSignature DigitalSignature? @relation(fields: [digitalSignatureId], references: [id]) // Relación 1:1 con la firma digital
+
+  verification KycAmlVerification? // Relación 1:1 con la verificación KYC/AML
+}
+
+model DigitalSignature {
+  id            Int      @id @default(autoincrement()) // ID de la firma digital
+  documentHash  String // Hash criptográfico del documento firmado
+  signatureDate DateTime @default(now()) // Fecha y hora de la firma
+  signedBy      String // Identificador o DNI del firmante
+  documentUrl   String? // URL al documento firmado (opcional)
+
+  credit Credit? // Relación inversa 1:1 con el crédito
+}
+
+model KycAmlVerification {
+  id               Int       @id @default(autoincrement()) // ID de la verificación
+  creditId         Int       @unique // ID del crédito verificado (único)
+  riskLevel        String // Nivel de riesgo: "low", "medium", "high"
+  pep              Boolean // Indica si es una Persona Políticamente Expuesta
+  verified         Boolean   @default(false) // Estado de verificación (true si fue aprobada)
+  verificationDate DateTime? // Fecha de verificación (opcional)
+
+  credit Credit @relation(fields: [creditId], references: [id]) // Relación 1:1 con el crédito asociado
+}
+
+enum CreditStatus {
+  PENDING // Solicitud pendiente
+  APPROVED // Crédito aprobado
+  REJECTED // Crédito rechazado
+  CANCELED // Crédito cancelado
 }
