@@ -7,11 +7,11 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
-  name: string;
+  firstName: string;
 
   @IsString()
   @IsNotEmpty()
-  lastname: string;
+  lastName: string;
 
   @IsEmail()
   @IsNotEmpty()

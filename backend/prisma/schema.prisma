@@ -15,11 +15,12 @@ datasource db {
 }
 
 model User {
-  dni       String @id @unique 
-  firstName String 
-  lastName  String 
-  email     String @unique 
-  password  String 
+  dni       String @id @unique
+  firstName String
+  lastName  String
+  email     String @unique
+  password  String
+  role      Role   @default(USER)
 
   credits Credit[] // Créditos solicitados por el usuario
   Company Company[] // Empresas registradas por el usuario
@@ -34,9 +35,9 @@ model Company {
   activity          String? // Actividad económica (opcional)
   incorporationDate DateTime? // Fecha de constitución (opcional)
   annualRevenue     Float? // Ingresos anuales estimados (opcional)
-  userDni String // DNI del usuario que la registró
-  user    User   @relation(fields: [userDni], references: [dni]) // Relación con el usuario creador
-  credits Credit[] // Créditos solicitados por esta empresa
+  userDni           String // DNI del usuario que la registró
+  user              User      @relation(fields: [userDni], references: [dni]) // Relación con el usuario creador
+  credits           Credit[] // Créditos solicitados por esta empresa
 }
 
 model Credit {
@@ -79,6 +80,11 @@ model KycAmlVerification {
   verificationDate DateTime? // Fecha de verificación (opcional)
 
   credit Credit @relation(fields: [creditId], references: [id]) // Relación 1:1 con el crédito asociado
+}
+
+enum Role {
+  USER
+  ADMIN
 }
 
 enum CreditStatus {
