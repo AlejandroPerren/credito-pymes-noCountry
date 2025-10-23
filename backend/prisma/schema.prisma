@@ -49,6 +49,7 @@ model Credit {
   requestDate        DateTime     @default(now()) // Fecha de solicitud
   approvalDate       DateTime? // Fecha de aprobación (si aplica)
   digitalSignatureId Int?         @unique // ID de firma digital asociada (único)
+  note               String? // reazon de denegacion de credito
 
   companyId Int // ID de la empresa solicitante
   company   Company @relation(fields: [companyId], references: [id]) // Relación con la empresa
