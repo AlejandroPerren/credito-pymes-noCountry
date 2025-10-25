@@ -11,9 +11,10 @@ export async function apiFetch<TData = unknown, TBody = unknown>(
   endpoint: string,
   options: FetchOptions<TBody> = {}
 ): Promise<{ ok: boolean; data: TData | null; error?: string }> {
-  console.log(endpoint);
+  const url = `/api${endpoint}`;
+  console.log(url);
   try {
-    const res = await fetch(endpoint, {
+    const res = await fetch(url, {
       method: options.method || "GET", // method ? get : method
       headers: {
         "Content-Type": "application/json",
