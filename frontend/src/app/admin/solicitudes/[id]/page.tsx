@@ -17,7 +17,10 @@ export default async function CreditDetails({ params }: { params: Promise<{ id: 
         </div>
 
         {/* TODO: Historial de Estados */}
-        <div className="w-200 flex flex-col rounded-brand-lg bg-popover p-brand-lg"></div>
+        <div className="w-200 flex flex-col rounded-brand-lg bg-popover p-brand-lg">
+          <h4 className="heading-4">Historial de Estados</h4>
+          <div className="flex flex-col"></div>
+        </div>
       </div>
     </div>
   );
