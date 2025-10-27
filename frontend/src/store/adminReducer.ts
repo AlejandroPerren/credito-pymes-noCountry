@@ -1,8 +1,13 @@
+import { mockCredits } from "@/utils/consts/credits";
 import { AdminContextAction, AdminContextState } from "@/utils/types/contexts";
 
 export const adminContextInitialState: AdminContextState = {
-  credits: [],
+  credits: mockCredits,
 };
+
+// export const adminContextInitialState: AdminContextState = {
+//   credits: [],
+// };
 
 export function adminReducer(state: AdminContextState, action: AdminContextAction): AdminContextState {
   switch (action.type) {

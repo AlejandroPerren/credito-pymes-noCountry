@@ -1,4 +1,4 @@
-import { FolderOpen, LayoutDashboard, Bolt } from "lucide-react";
+import { FolderOpen, LayoutDashboard } from "lucide-react";
 
 export const sideBarUserItems = [
   {
@@ -11,9 +11,9 @@ export const sideBarUserItems = [
     icon: <FolderOpen size={16} />,
     text: "Solicitudes",
   },
-  {
-    href: "/configuracion",
-    icon: <Bolt size={16} />,
-    text: "Configuración",
-  },
+  // {
+  //   href: "/configuracion",
+  //   icon: <Bolt size={16} />,
+  //   text: "Configuración",
+  // },
 ];
