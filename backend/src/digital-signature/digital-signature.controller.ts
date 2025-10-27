@@ -11,7 +11,11 @@ import { DigitalSignatureService } from './digital-signature.service';
 import { CreateDigitalSignatureDto } from './dto/create-digital-signature.dto';
 import { UpdateDigitalSignatureDto } from './dto/update-digital-signature.dto';
 
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+
 @Controller('digital-signature')
+@UseGuards(JwtAuthGuard)
 export class DigitalSignatureController {
   constructor(
     private readonly digitalSignatureService: DigitalSignatureService,

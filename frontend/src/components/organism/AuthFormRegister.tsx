@@ -9,6 +9,7 @@ import { RegisterFormData, registerSchema } from "@/utils/types/register";
 import Link from "next/link";
 import { ROUTES } from "@/utils/config/routesApp/routes";
 import { useNavigateApp } from "@/utils/hooks/useNavigate";
+import { apiFetch } from "@/network/utils/FetchApi";
 
 export const AuthFormRegister = () => {
   const {
@@ -22,9 +23,22 @@ export const AuthFormRegister = () => {
   const { toDashboard } = useNavigateApp();
 
   const onSubmit = async (data: RegisterFormData) => {
-    console.log("Datos enviados ✅", data);
-    await new Promise((res) => setTimeout(res, 1500));
-    toDashboard();
+    const [firstName, ...lastName] = data.name.split(' ');
+    const response = await apiFetch('/users', {
+      method: 'POST',
+      body: {
+        dni: data.dni,
+        firstName,
+        lastName: "Holaa",
+        email: data.email,
+        password: data.password,
+      },
+    });
+    console.log('Registration response:', response);
+    if (response.ok) {
+      // For now, just redirect to dashboard. Later we can redirect to login.
+      toDashboard();
+    }
   };
 
   return (
