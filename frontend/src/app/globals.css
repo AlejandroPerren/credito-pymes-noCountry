@@ -271,6 +271,10 @@
     @apply text-brand-p-small leading-brand-p-small;
   }
 
+  .paragraph-small-medium {
+    @apply text-brand-p-small leading-brand-p-small font-medium;
+  }
+
   .paragraph-mini {
     @apply text-brand-p-mini leading-brand-p-mini;
   }
