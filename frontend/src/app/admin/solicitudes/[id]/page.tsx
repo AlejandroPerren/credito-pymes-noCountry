@@ -1,4 +1,5 @@
 import CreditAdminDetailsCompany from "@/components/molecules/CreditAdminDetailsCompany";
+import CreditAdminDetailsDocuments from "@/components/molecules/CreditAdminDetailsDocuments";
 import CreditAdminDetailsHeader from "@/components/molecules/CreditAdminDetailsHeader";
 
 export default async function CreditDetails({ params }: { params: Promise<{ id: string }> }) {
@@ -12,7 +13,7 @@ export default async function CreditDetails({ params }: { params: Promise<{ id: 
         <div className="w-full flex flex-col gap-brand-lg">
           <CreditAdminDetailsCompany id={+id} />
 
-          <div className="w-full flex flex-col rounded-brand-lg bg-popover p-brand-lg"></div>
+          <CreditAdminDetailsDocuments />
         </div>
 
         {/* TODO: Historial de Estados */}
