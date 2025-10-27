@@ -13,12 +13,12 @@ export class AuthService {
     private usersService: UsersService,
   ) {}
 
-  async login(email: string, pass: string, res: Response) {
+  async login(email: string, pass: string) {
     this.logger.log(`Iniciando login para el email: ${email}`);
 
     this.logger.log('Buscando usuario en la base de datos...');
     const user = await this.usersService.findOne({ email });
-    this.logger.log('Usuario encontrado, procediendo a comparar contraseña.');
+    this.logger.log('Usuario encontrado:', JSON.stringify(user));
 
     if (!user || !(await comparePassword(pass, user.password))) {
       this.logger.warn(`Intento de login fallido para: ${email}`);
@@ -26,22 +26,17 @@ export class AuthService {
     }
 
     this.logger.log('Credenciales válidas. Generando token...');
-    const payload = { sub: user.dni, email: user.email };
-    const token = this.jwtService.sign(payload, { expiresIn: '1h' });
+    const payload = { sub: user.dni, email: user.email, role: user.role };
+    this.logger.log('Payload a firmar:', JSON.stringify(payload));
+    const token = this.jwtService.sign(payload);
+    this.logger.log('Token generado:', token);
 
-    res.cookie('access_token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 60 * 60 * 1000,
-    });
-
-    this.logger.log('Login exitoso y cookie enviada.');
-    res.json({ message: 'Login exitoso' });
+    this.logger.log('Login exitoso.');
+    return { access_token: token, role: user.role };
   }
 
-  logout(res: Response) {
-    res.clearCookie('access_token');
+  logout() {
+    // res.clearCookie('access_token');
     return { message: 'Logout exitoso' };
   }
 }

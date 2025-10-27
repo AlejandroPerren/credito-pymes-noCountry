@@ -11,7 +11,11 @@ import { KycAmlVerificationService } from './kyc-aml-verification.service';
 import { CreateKycAmlVerificationDto } from './dto/create-kyc-aml-verification.dto';
 import { UpdateKycAmlVerificationDto } from './dto/update-kyc-aml-verification.dto';
 
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+
 @Controller('kyc-aml-verification')
+@UseGuards(JwtAuthGuard)
 export class KycAmlVerificationController {
   constructor(
     private readonly kycAmlVerificationService: KycAmlVerificationService,
