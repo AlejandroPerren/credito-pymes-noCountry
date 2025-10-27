@@ -11,6 +11,7 @@ import { TEXTS } from "@/utils/consts/login";
 import { LoginFormData, loginSchema } from "@/utils/types/login";
 import { ROUTES } from "@/utils/config/routesApp/routes";
 import { useNavigateApp } from "@/utils/hooks/useNavigate";
+import { apiFetch } from "@/network/utils/FetchApi";
 
 export const AuthFormLogin = () => {
   const {
@@ -28,9 +29,27 @@ export const AuthFormLogin = () => {
   const remember = watch("remember", false);
 
   const onSubmit = async (data: LoginFormData) => {
-    console.log("Datos enviados ✅", data);
-    await new Promise((res) => setTimeout(res, 1500));
-    toDashboard();
+    const response = await apiFetch<{ access_token: string; role: string }>(
+      '/auth/login',
+      {
+        method: 'POST',
+        body: { email: data.email, pass: data.password },
+      },
+    );
+
+    if (response.ok && response.data) {
+      localStorage.setItem('access_token', response.data.access_token);
+      localStorage.setItem('role', response.data.role);
+
+      if (response.data.role === 'ADMIN') {
+        window.location.href = '/admin';
+      } else {
+        window.location.href = '/user';
+      }
+    } else {
+      // Handle login error
+      console.error('Login failed:', response.error);
+    }
   };
 
   return (

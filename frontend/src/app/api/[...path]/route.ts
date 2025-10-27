@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from 'next/server';
 
 async function handler(req: NextRequest) {
@@ -14,11 +13,13 @@ async function handler(req: NextRequest) {
     // For now, we just forward the token
   }
 
+  console.log('Request method:', req.method);
   const response = await fetch(url, {
     method: req.method,
     headers,
     body: req.body,
-  });
+    duplex: 'half',
+  } as any);
 
   return new NextResponse(response.body, {
     status: response.status,
