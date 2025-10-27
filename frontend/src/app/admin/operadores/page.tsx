@@ -1,7 +1,7 @@
 export default function OperadoresPage() {
   return (
-    <div>
-      <h1>Operadores</h1>
+    <div className="flex flex-col gap-brand-2xl px-brand-lg py-brand-xl">
+      
     </div>
   );
-};
+}
