@@ -22,7 +22,7 @@ export default function StatusLabel({ status }: { status: CreditStatus }) {
   const label = setStatus(status);
 
   return (
-    <div className={cn("flex items-center justify-center rounded-brand-md py-1 px-2", label.color)}>
+    <div className={cn("h-8 flex items-center justify-center rounded-brand-md py-1 px-2", label.color)}>
       <h1 className="paragraph-small">{label.text}</h1>
     </div>
   );

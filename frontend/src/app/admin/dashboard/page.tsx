@@ -16,7 +16,7 @@ export default function DashboardPage() {
 
       <NewCreditsPanel />
 
-      <CreditsCards />
+      <CreditsCards variant="new" />
     </div>
   );
 }

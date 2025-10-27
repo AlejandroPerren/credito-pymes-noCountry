@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { Eye } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
 import StatusLabel from "../atoms/StatusLabel";
+import Link from "next/link";
 
 export default function CreditCard({ credit }: { credit: Credit }) {
   return (
@@ -15,9 +16,11 @@ export default function CreditCard({ credit }: { credit: Credit }) {
       <div className="flex justify-start">
         <StatusLabel status={credit.status} />
       </div>
-      <Button className="justify-start gap-">
-        <Eye />
-        <span className="w-full flex justify-center">Ver</span>
+      <Button className="justify-center" asChild>
+        <Link href={`/admin/solicitudes/${credit.id}`}>
+          <Eye />
+          Ver
+        </Link>
       </Button>
     </div>
   );
