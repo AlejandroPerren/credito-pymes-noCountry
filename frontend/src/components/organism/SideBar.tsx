@@ -7,7 +7,7 @@ export default function SideBar() {
     <div className="flex flex-col gap-[55px] p-brand-lg border-r-1 border-border-input">
       <div className="flex items-center gap-brand-md">
         <NavBarLogo />
-        <h4 className="heading-4">Fintech Pyme</h4>
+        <h4 className="heading-4 whitespace-nowrap">Fintech Pyme</h4>
       </div>
 
       <div className="flex flex-col gap-brand-md">
