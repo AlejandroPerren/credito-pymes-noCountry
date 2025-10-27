@@ -1,6 +1,6 @@
 import { FileText, FilePlus, FileClock, FilePen, FileCheck, FileX } from "lucide-react";
 
-export const solicitudesCounts = [
+export const creditsCounts = [
   {
     icon: <FileText />,
     label: "Total",

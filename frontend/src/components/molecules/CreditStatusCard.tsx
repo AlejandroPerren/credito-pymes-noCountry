@@ -1,4 +1,4 @@
-export default function SolicitudStatusCard({
+export default function CreditStatusCard({
   children,
   label,
   count,

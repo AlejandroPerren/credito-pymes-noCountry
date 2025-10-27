@@ -1,11 +1,11 @@
 "use client";
 
-import { solicitudesCounts } from "@/utils/consts/solicitudesCounts";
-import SolicitudStatusCard from "../molecules/SolicitudStatusCard";
+import { creditsCounts } from "@/utils/consts/creditsCounts";
+import SolicitudStatusCard from "../molecules/CreditStatusCard";
 import { useState } from "react";
 
-export default function SolicitudesStatusCards() {
-  const [cards] = useState(solicitudesCounts);
+export default function CreditsStatusCards() {
+  const [cards] = useState(creditsCounts);
 
   return (
     <div className="flex justify-between gap-brand-md">

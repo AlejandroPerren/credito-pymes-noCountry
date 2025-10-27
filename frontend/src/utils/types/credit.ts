@@ -6,4 +6,4 @@ export interface Credit {
   status: CreditStatus;
 }
 
-type CreditStatus = "PENDING" | "APPROVED" | "REJECTED" | "CANCELED";
+type CreditStatus = "NEW" | "PENDING" | "APPROVED" | "REJECTED" | "CANCELED";
