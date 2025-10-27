@@ -1,4 +1,4 @@
-import { FolderOpen, LayoutDashboard, Users } from "lucide-react";
+import { FolderOpen, LayoutDashboard } from "lucide-react";
 
 export const sideBarAdminItems = [
   {
@@ -11,9 +11,9 @@ export const sideBarAdminItems = [
     icon: <FolderOpen size={16} />,
     text: "Solicitudes",
   },
-  {
-    href: "/admin/operadores",
-    icon: <Users size={16} />,
-    text: "Operadores",
-  },
+  // {
+  //   href: "/admin/configuracion",
+  //   icon: <Bolt size={16} />,
+  //   text: "Configuración",
+  // },
 ];
