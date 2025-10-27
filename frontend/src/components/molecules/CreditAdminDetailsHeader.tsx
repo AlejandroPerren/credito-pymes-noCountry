@@ -24,7 +24,7 @@ export default function CreditAdminDetailsHeader({ id }: { id: number }) {
       <div className="flex gap-brand-md">
         <div className="flex flex-col gap-brand-md">
           <h4 className="heading-4">Solicitud de crédito {credit.id}</h4>
-          <p className="paragraph-regular text-placeholder-text">{credit.company}</p>
+          <p className="paragraph-regular text-placeholder-text">{credit.company.businessName}</p>
         </div>
       </div>
 

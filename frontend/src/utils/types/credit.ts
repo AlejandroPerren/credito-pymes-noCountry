@@ -1,6 +1,8 @@
+import { Company } from "./company";
+
 export interface Credit {
   id: number;
-  company: string;
+  company: Company;
   requestedAmmount: number;
   requestDate: string;
   status: CreditStatus;
