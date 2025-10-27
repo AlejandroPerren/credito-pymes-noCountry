@@ -7,7 +7,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <AdminContextProvider>
       <div className="flex h-screen">
         <SideBar />
-        <div className="w-full">
+        <div className="h-full w-full overflow-y-hidden">
           <HeaderBar />
           {children}
         </div>
