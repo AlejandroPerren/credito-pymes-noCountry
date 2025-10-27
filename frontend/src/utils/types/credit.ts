@@ -6,4 +6,11 @@ export interface Credit {
   status: CreditStatus;
 }
 
-type CreditStatus = "NEW" | "PENDING" | "APPROVED" | "REJECTED" | "CANCELED";
+type CreditStatus = "NEW" | "PENDING" | "APPROVED" | "REJECTED" | "CANCELED" | "REVIEW";
+
+export interface CreditCountCard {
+  icon: React.JSX.Element;
+  status: CreditStatus | "ALL";
+  label: string;
+  count: number;
+}

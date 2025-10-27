@@ -1,15 +1,14 @@
 "use client";
 
-import { creditsCounts } from "@/utils/consts/creditsCounts";
 import SolicitudStatusCard from "../molecules/CreditStatusCard";
-import { useState } from "react";
+import { useCreditsCount } from "@/utils/hooks/useCreditsCount";
 
 export default function CreditsStatusCards() {
-  const [cards] = useState(creditsCounts);
+  const { creditsCounts } = useCreditsCount();
 
   return (
     <div className="flex justify-between gap-brand-md">
-      {cards.map((item, i) => (
+      {creditsCounts.map((item, i) => (
         <SolicitudStatusCard key={i} label={item.label} count={item.count}>
           {item.icon}
         </SolicitudStatusCard>

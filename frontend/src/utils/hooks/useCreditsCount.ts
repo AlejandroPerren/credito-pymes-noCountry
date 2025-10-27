@@ -1,0 +1,56 @@
+"use client";
+
+import { useAdminContext } from "@/store/adminContext";
+import { creditsCountsInitialState } from "../consts/creditsCountsInitialState";
+
+export function useCreditsCount() {
+  const {
+    state: { credits },
+  } = useAdminContext();
+
+  const totalCount = credits.length;
+  const newCount = credits.filter((credit) => credit.status === "NEW").length;
+  const pendingCount = credits.filter((credit) => credit.status === "PENDING").length;
+  const forReviewCount = 0;
+  const approvedCount = credits.filter((credit) => credit.status === "APPROVED").length;
+  const rejectedCount = credits.filter((credit) => credit.status === "REJECTED").length;
+
+  const creditsCounts = creditsCountsInitialState.map((item) => {
+    switch (item.status) {
+      case "ALL":
+        return {
+          ...item,
+          count: totalCount,
+        };
+      case "NEW":
+        return {
+          ...item,
+          count: newCount,
+        };
+      case "PENDING":
+        return {
+          ...item,
+          count: pendingCount,
+        };
+      case "REVIEW":
+        return {
+          ...item,
+          count: forReviewCount,
+        };
+      case "APPROVED":
+        return {
+          ...item,
+          count: approvedCount,
+        };
+      case "REJECTED":
+        return {
+          ...item,
+          count: rejectedCount,
+        };
+      default:
+        return { ...item };
+    }
+  });
+
+  return { creditsCounts };
+}
