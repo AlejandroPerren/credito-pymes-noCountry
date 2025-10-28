@@ -3,6 +3,7 @@ import StatusLabel from "../atoms/StatusLabel";
 import UserCreditReviewBanner from "./UserCreditReviewBanner";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { Eye } from "lucide-react";
 
 export default function UserCreditCard({ credit }: { credit: Credit }) {
   return (
@@ -25,7 +26,10 @@ export default function UserCreditCard({ credit }: { credit: Credit }) {
 
       <div>
         <Button variant="secondary" size="lg" asChild>
-          <Link href={`/user/solicitudes/${credit.id}`}>Ver detalles</Link>
+          <Link href={`/user/solicitudes/${credit.id}`}>
+            <Eye />
+            Ver detalles
+          </Link>
         </Button>
       </div>
     </div>
