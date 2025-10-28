@@ -1,7 +1,7 @@
 "use client";
 
 import { useAdminContext } from "@/store/adminContext";
-import CreditCard from "../molecule/CreditCard";
+import CreditCard from "../molecules/CreditCard";
 
 export default function CreditsCards({ variant }: { variant: "new" | "all" }) {
   const { state } = useAdminContext();
