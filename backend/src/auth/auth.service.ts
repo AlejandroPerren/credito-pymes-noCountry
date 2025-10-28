@@ -32,7 +32,12 @@ export class AuthService {
     this.logger.log('Token generado:', token);
 
     this.logger.log('Login exitoso.');
-    return { access_token: token, role: user.role };
+    return {
+      access_token: token,
+      role: user.role,
+      firstname: user.firstName,
+      lastname: user.lastName,
+    };
   }
 
   logout() {
