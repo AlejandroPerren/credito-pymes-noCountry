@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import { CircleAlert } from "lucide-react";
+import { X } from "lucide-react";
 
-export default function AlertBanner({
+export default function FailureBanner({
   children,
   variant = "default",
   size = "default",
@@ -23,14 +23,14 @@ export default function AlertBanner({
   return (
     <div
       className={cn(
-        "flex gap-brand-md rounded-brand-lg border-1 border-l-4 border-star bg-popover",
+        "flex gap-brand-md rounded-brand-lg border-1 border-l-4 border-error bg-popover",
         variant === "stretch" && variants.stretch,
         variant === "default" && variants.default,
         size === "large" && sizes.large,
         size === "default" && sizes.default
       )}
     >
-      <CircleAlert className="text-star" />
+      <X className="text-error" />
       <div className="w-full flex flex-col gap-brand-sm">{children}</div>
     </div>
   );

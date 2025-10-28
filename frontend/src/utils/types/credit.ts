@@ -3,9 +3,10 @@ import { Company } from "./company";
 export interface Credit {
   id: number;
   company: Company;
-  requestedAmmount: number;
+  requestedAmount: number;
   requestDate: string;
   status: CreditStatus;
+  note?: string;
 }
 
 export type CreditStatus = "NEW" | "PENDING" | "APPROVED" | "REJECTED" | "CANCELED" | "REVIEW";

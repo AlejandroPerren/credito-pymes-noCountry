@@ -10,9 +10,10 @@ export const mockCredits: Credit[] = [
       phone: "604 312 4589",
       activity: "Elaboración y venta de productos de panadería artesanal",
     },
-    requestedAmmount: 120000.0,
+    requestedAmount: 120000.0,
     requestDate: "22/10/2025",
-    status: "PENDING",
+    status: "REVIEW",
+    note: "Se requiere verificación del INE del representante legal por fecha de expedición vencida.",
   },
   {
     id: 19,
@@ -23,7 +24,7 @@ export const mockCredits: Credit[] = [
       phone: "601 755 2291",
       activity: "Venta de útiles escolares, libros y artículos de oficina",
     },
-    requestedAmmount: 95000.0,
+    requestedAmount: 95000.0,
     requestDate: "22/10/2025",
     status: "PENDING",
   },
@@ -36,7 +37,7 @@ export const mockCredits: Credit[] = [
       phone: "605 367 4455",
       activity: "Fabricación y comercialización de prendas de vestir",
     },
-    requestedAmmount: 200000.0,
+    requestedAmount: 200000.0,
     requestDate: "22/10/2025",
     status: "APPROVED",
   },
@@ -49,7 +50,7 @@ export const mockCredits: Credit[] = [
       phone: "606 321 8888",
       activity: "Servicios odontológicos y de salud oral",
     },
-    requestedAmmount: 320000.0,
+    requestedAmount: 320000.0,
     requestDate: "22/10/2025",
     status: "PENDING",
   },
@@ -62,9 +63,10 @@ export const mockCredits: Credit[] = [
       phone: "607 648 1120",
       activity: "Distribución mayorista de productos alimenticios y bebidas",
     },
-    requestedAmmount: 890000.0,
+    requestedAmount: 890000.0,
     requestDate: "22/10/2025",
-    status: "PENDING",
+    status: "REVIEW",
+    note: "El acta constitutiva presenta discrepancias en la firma del representante legal.",
   },
   {
     id: 23,
@@ -75,9 +77,10 @@ export const mockCredits: Credit[] = [
       phone: "608 271 4455",
       activity: "Venta al detal de productos de abarrotes y víveres",
     },
-    requestedAmmount: 155000.0,
+    requestedAmount: 155000.0,
     requestDate: "22/10/2025",
     status: "REJECTED",
+    note: "El crédito fue rechazado debido a inconsistencias en el Acta Constitutiva presentada.",
   },
   {
     id: 24,
@@ -88,7 +91,7 @@ export const mockCredits: Credit[] = [
       phone: "602 345 9090",
       activity: "Servicios de peluquería, estética y cuidado personal",
     },
-    requestedAmmount: 75000.0,
+    requestedAmount: 75000.0,
     requestDate: "22/10/2025",
     status: "NEW",
   },
@@ -101,7 +104,7 @@ export const mockCredits: Credit[] = [
       phone: "606 875 4300",
       activity: "Fabricación e instalación de estructuras en vidrio y aluminio",
     },
-    requestedAmmount: 135000.0,
+    requestedAmount: 135000.0,
     requestDate: "22/10/2025",
     status: "NEW",
   },
@@ -114,7 +117,7 @@ export const mockCredits: Credit[] = [
       phone: "605 665 1212",
       activity: "Servicios de impresión offset y digital",
     },
-    requestedAmmount: 480000.0,
+    requestedAmount: 480000.0,
     requestDate: "22/10/2025",
     status: "NEW",
   },
@@ -123,9 +126,10 @@ export const mockCredits: Credit[] = [
 export const mockUserCredits: Credit[] = [
   {
     id: 18,
-    requestedAmmount: 120000.0,
+    requestedAmount: 120000.0,
     requestDate: "22/10/2025",
     status: "REVIEW",
+    note: "El INE del representante legal presenta datos ilegibles; se solicita nueva copia escaneada.",
     company: {
       businessName: "CONFECCIONES ARGENTINA S.R.L.",
       taxId: "900.782.119-9",
@@ -136,7 +140,7 @@ export const mockUserCredits: Credit[] = [
   },
   {
     id: 19,
-    requestedAmmount: 95000.0,
+    requestedAmount: 95000.0,
     requestDate: "22/10/2025",
     status: "PENDING",
     company: {
@@ -149,7 +153,7 @@ export const mockUserCredits: Credit[] = [
   },
   {
     id: 20,
-    requestedAmmount: 200000.0,
+    requestedAmount: 200000.0,
     requestDate: "22/10/2025",
     status: "APPROVED",
     company: {
@@ -162,7 +166,7 @@ export const mockUserCredits: Credit[] = [
   },
   {
     id: 21,
-    requestedAmmount: 320000.0,
+    requestedAmount: 320000.0,
     requestDate: "22/10/2025",
     status: "PENDING",
     company: {
@@ -175,7 +179,7 @@ export const mockUserCredits: Credit[] = [
   },
   {
     id: 22,
-    requestedAmmount: 890000.0,
+    requestedAmount: 890000.0,
     requestDate: "22/10/2025",
     status: "PENDING",
     company: {
@@ -188,9 +192,10 @@ export const mockUserCredits: Credit[] = [
   },
   {
     id: 23,
-    requestedAmmount: 155000.0,
+    requestedAmount: 155000.0,
     requestDate: "22/10/2025",
     status: "REJECTED",
+    note: "El crédito fue rechazado debido a inconsistencias en el Acta Constitutiva presentada.",
     company: {
       businessName: "CONFECCIONES ARGENTINA S.R.L.",
       taxId: "900.782.119-9",
@@ -201,7 +206,7 @@ export const mockUserCredits: Credit[] = [
   },
   {
     id: 24,
-    requestedAmmount: 75000.0,
+    requestedAmount: 75000.0,
     requestDate: "22/10/2025",
     status: "NEW",
     company: {
@@ -214,7 +219,7 @@ export const mockUserCredits: Credit[] = [
   },
   {
     id: 25,
-    requestedAmmount: 135000.0,
+    requestedAmount: 135000.0,
     requestDate: "22/10/2025",
     status: "NEW",
     company: {
@@ -227,7 +232,7 @@ export const mockUserCredits: Credit[] = [
   },
   {
     id: 26,
-    requestedAmmount: 480000.0,
+    requestedAmount: 480000.0,
     requestDate: "22/10/2025",
     status: "NEW",
     company: {

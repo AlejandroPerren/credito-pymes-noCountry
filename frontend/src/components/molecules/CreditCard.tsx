@@ -11,7 +11,7 @@ export default function CreditCard({ credit }: { credit: Credit }) {
       <Checkbox />
       <span className="paragraph-small">{credit.id}</span>
       <span className="paragraph-small">{credit.company.businessName}</span>
-      <span className="paragraph-small">${credit.requestedAmmount}</span>
+      <span className="paragraph-small">${credit.requestedAmount}</span>
       <span className="paragraph-small">{credit.requestDate}</span>
       <div className="flex justify-start">
         <StatusLabel status={credit.status} />
