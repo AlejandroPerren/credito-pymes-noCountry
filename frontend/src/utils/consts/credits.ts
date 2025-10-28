@@ -1,4 +1,4 @@
-import { Credit, UserCredit } from "../types/credit";
+import { Credit } from "../types/credit";
 
 export const mockCredits: Credit[] = [
   {
@@ -120,59 +120,122 @@ export const mockCredits: Credit[] = [
   },
 ];
 
-export const mockUserCredits: UserCredit[] = [
+export const mockUserCredits: Credit[] = [
   {
     id: 18,
     requestedAmmount: 120000.0,
     requestDate: "22/10/2025",
-    status: "PENDING",
+    status: "REVIEW",
+    company: {
+      businessName: "CONFECCIONES ARGENTINA S.R.L.",
+      taxId: "900.782.119-9",
+      adress: "Calle 72 #48-11, Barranquilla",
+      phone: "605 367 4455",
+      activity: "Fabricación y comercialización de prendas de vestir",
+    },
   },
   {
     id: 19,
     requestedAmmount: 95000.0,
     requestDate: "22/10/2025",
     status: "PENDING",
+    company: {
+      businessName: "CONFECCIONES ARGENTINA S.R.L.",
+      taxId: "900.782.119-9",
+      adress: "Calle 72 #48-11, Barranquilla",
+      phone: "605 367 4455",
+      activity: "Fabricación y comercialización de prendas de vestir",
+    },
   },
   {
     id: 20,
     requestedAmmount: 200000.0,
     requestDate: "22/10/2025",
     status: "APPROVED",
+    company: {
+      businessName: "CONFECCIONES ARGENTINA S.R.L.",
+      taxId: "900.782.119-9",
+      adress: "Calle 72 #48-11, Barranquilla",
+      phone: "605 367 4455",
+      activity: "Fabricación y comercialización de prendas de vestir",
+    },
   },
   {
     id: 21,
     requestedAmmount: 320000.0,
     requestDate: "22/10/2025",
     status: "PENDING",
+    company: {
+      businessName: "CONFECCIONES ARGENTINA S.R.L.",
+      taxId: "900.782.119-9",
+      adress: "Calle 72 #48-11, Barranquilla",
+      phone: "605 367 4455",
+      activity: "Fabricación y comercialización de prendas de vestir",
+    },
   },
   {
     id: 22,
     requestedAmmount: 890000.0,
     requestDate: "22/10/2025",
     status: "PENDING",
+    company: {
+      businessName: "CONFECCIONES ARGENTINA S.R.L.",
+      taxId: "900.782.119-9",
+      adress: "Calle 72 #48-11, Barranquilla",
+      phone: "605 367 4455",
+      activity: "Fabricación y comercialización de prendas de vestir",
+    },
   },
   {
     id: 23,
     requestedAmmount: 155000.0,
     requestDate: "22/10/2025",
     status: "REJECTED",
+    company: {
+      businessName: "CONFECCIONES ARGENTINA S.R.L.",
+      taxId: "900.782.119-9",
+      adress: "Calle 72 #48-11, Barranquilla",
+      phone: "605 367 4455",
+      activity: "Fabricación y comercialización de prendas de vestir",
+    },
   },
   {
     id: 24,
     requestedAmmount: 75000.0,
     requestDate: "22/10/2025",
     status: "NEW",
+    company: {
+      businessName: "CONFECCIONES ARGENTINA S.R.L.",
+      taxId: "900.782.119-9",
+      adress: "Calle 72 #48-11, Barranquilla",
+      phone: "605 367 4455",
+      activity: "Fabricación y comercialización de prendas de vestir",
+    },
   },
   {
     id: 25,
     requestedAmmount: 135000.0,
     requestDate: "22/10/2025",
     status: "NEW",
+    company: {
+      businessName: "CONFECCIONES ARGENTINA S.R.L.",
+      taxId: "900.782.119-9",
+      adress: "Calle 72 #48-11, Barranquilla",
+      phone: "605 367 4455",
+      activity: "Fabricación y comercialización de prendas de vestir",
+    },
   },
   {
     id: 26,
     requestedAmmount: 480000.0,
     requestDate: "22/10/2025",
     status: "NEW",
+    company: {
+      businessName: "CONFECCIONES ARGENTINA S.R.L.",
+      taxId: "900.782.119-9",
+      adress: "Calle 72 #48-11, Barranquilla",
+      phone: "605 367 4455",
+      activity: "Fabricación y comercialización de prendas de vestir",
+    },
   },
 ];

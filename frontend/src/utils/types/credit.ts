@@ -16,5 +16,3 @@ export interface CreditCountCard {
   label: string;
   count: number;
 }
-
-export type UserCredit = Omit<Credit, "company">;

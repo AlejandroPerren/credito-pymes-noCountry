@@ -1,13 +1,18 @@
-import VerifyIdentityBanner from "@/components/molecules/VerifyIdentityBanner";
-import UserNeeds from "@/components/organism/UserNeeds";
-import UserWelcome from "@/components/organism/UserWelcome";
+"use client";
+
+import NewUserDashboard from "@/components/organism/NewUserDashboard";
+import OldUserDashboard from "@/components/organism/OldUserDashboard";
+import { useUserContext } from "@/store/userContext";
 
 export default function UserDashboardPage() {
+  const {
+    state: { credits },
+  } = useUserContext();
+
   return (
-    <div className="flex flex-col gap-brand-2xl p-brand-lg">
-      <VerifyIdentityBanner />
-      <UserWelcome />
-      <UserNeeds />
+    <div className="h-full flex flex-col overflow-hidden">
+      {credits.length === 0 && <NewUserDashboard />}
+      {credits.length > 0 && <OldUserDashboard />}
     </div>
   );
 }

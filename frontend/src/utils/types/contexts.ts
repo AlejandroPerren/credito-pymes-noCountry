@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { LoggedUser } from "./loggedUser";
-import { Credit, UserCredit } from "./credit";
+import { Credit } from "./credit";
 
 export interface GlobalContextState {
   loggedUser: LoggedUser | null;
@@ -14,14 +14,14 @@ export interface GlobalContextT {
 }
 
 export interface UserContextState {
-  credits: UserCredit[];
+  credits: Credit[];
 }
 
 export type UserContextAction = { type: "UNDER_DEV" };
 
 export interface UserContextT {
   state: UserContextState;
-  dispatch: Dispatch<AdminContextAction>;
+  dispatch: Dispatch<UserContextAction>;
 }
 
 export interface AdminContextState {
