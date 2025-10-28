@@ -29,15 +29,12 @@ export const AuthFormLogin = () => {
   const remember = watch("remember", false);
 
   const onSubmit = async (data: LoginFormData) => {
-    const response = await apiFetch<{ access_token: string; role: string }>("/auth/login", {
+    const response = await apiFetch<{ role: string }>("/auth/login", {
       method: "POST",
       body: { email: data.email, pass: data.password },
     });
 
     if (response.ok && response.data) {
-      localStorage.setItem("access_token", response.data.access_token);
-      localStorage.setItem("role", response.data.role);
-
       if (response.data.role === "ADMIN") {
         window.location.href = "/admin";
       } else {

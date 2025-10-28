@@ -1,18 +1,29 @@
 "use client";
-
-import NewUserDashboard from "@/components/organism/NewUserDashboard";
-import OldUserDashboard from "@/components/organism/OldUserDashboard";
-import { useUserContext } from "@/store/userContext";
+import { useEffect, useState } from "react";
+import CreateCompanyBanner from "@/components/molecules/CreateCompanyBanner";
+import UserNeeds from "@/components/organism/UserNeeds";
+import UserWelcome from "@/components/organism/UserWelcome";
+import { apiFetch } from "@/network/utils/FetchApi";
 
 export default function UserDashboardPage() {
-  const {
-    state: { credits },
-  } = useUserContext();
+  const [hasCompany, setHasCompany] = useState(true);
+
+  useEffect(() => {
+    const fetchCompany = async () => {
+      const response = await apiFetch("/company");
+      if (response.ok && Array.isArray(response.data) && response.data.length === 0) {
+        setHasCompany(false);
+      }
+    };
+
+    fetchCompany();
+  }, []);
 
   return (
-    <div className="h-full flex flex-col overflow-hidden">
-      {credits.length === 0 && <NewUserDashboard />}
-      {credits.length > 0 && <OldUserDashboard />}
+    <div className="flex flex-col gap-brand-2xl p-brand-lg">
+      {!hasCompany && <CreateCompanyBanner />}
+      <UserWelcome />
+      <UserNeeds />
     </div>
   );
 }

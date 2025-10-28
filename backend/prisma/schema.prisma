@@ -45,7 +45,7 @@ model Credit {
   requestedAmount    Float // Monto solicitado
   termMonths         Int // Plazo en meses
   interestRate       Float // Tasa de interés aplicada
-  status             CreditStatus @default(PENDING) // Estado del crédito (pendiente, aprobado, etc.)
+  status             CreditStatus @default(NEW) // Estado del crédito (pendiente, aprobado, etc.)
   requestDate        DateTime     @default(now()) // Fecha de solicitud
   approvalDate       DateTime? // Fecha de aprobación (si aplica)
   digitalSignatureId Int?         @unique // ID de firma digital asociada (único)
@@ -92,5 +92,7 @@ enum CreditStatus {
   PENDING // Solicitud pendiente
   APPROVED // Crédito aprobado
   REJECTED // Crédito rechazado
-  CANCELED // Crédito cancelado
+  NEW // Crédito cancelado
+  CANCELED
+  REVIEW
 }

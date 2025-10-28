@@ -8,12 +8,28 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('login')
-  login(@Body() loginDto: LoginDto) {
-    return this.authService.login(loginDto.email, loginDto.pass);
+  async login(
+    @Body() loginDto: LoginDto,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const { access_token, ...userData } = await this.authService.login(
+      loginDto.email,
+      loginDto.pass,
+    );
+
+    res.cookie('access_token', access_token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== 'development',
+      sameSite: 'lax',
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+    });
+
+    return userData;
   }
 
   @Post('logout')
-  logout() {
+  logout(@Res({ passthrough: true }) res: Response) {
+    res.clearCookie('access_token');
     return this.authService.logout();
   }
 
