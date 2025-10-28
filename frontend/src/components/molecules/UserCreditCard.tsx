@@ -4,6 +4,8 @@ import UserCreditReviewBanner from "./UserCreditReviewBanner";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Eye } from "lucide-react";
+import UserCreditApprovedBanner from "./UserCreditApprovedBanner";
+import UserCreditRejectedBanner from "./UserCreditRejectedBanner";
 
 export default function UserCreditCard({ credit }: { credit: Credit }) {
   return (
@@ -23,6 +25,8 @@ export default function UserCreditCard({ credit }: { credit: Credit }) {
       </div>
 
       {credit.status === "REVIEW" && <UserCreditReviewBanner />}
+      {credit.status === "APPROVED" && <UserCreditApprovedBanner amount={credit.requestedAmmount} />}
+      {credit.status === "REJECTED" && <UserCreditRejectedBanner />}
 
       <div>
         <Button variant="secondary" size="lg" asChild>
