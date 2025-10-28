@@ -19,13 +19,13 @@ export default function UserCreditCard({ credit }: { credit: Credit }) {
       </div>
 
       <div className="flex gap-brand-md items-center">
-        <p className="paragraph-small text-muted-foreground">Monto solicitado ${credit.requestedAmmount.toFixed(2)}</p>
+        <p className="paragraph-small text-muted-foreground">Monto solicitado ${credit.requestedAmount.toFixed(2)}</p>
         <div className="w-2 h-2 rounded-full bg-border-input"></div>
         <p className="paragraph-small text-muted-foreground">Creada el {credit.requestDate}</p>
       </div>
 
       {credit.status === "REVIEW" && <UserCreditReviewBanner />}
-      {credit.status === "APPROVED" && <UserCreditApprovedBanner amount={credit.requestedAmmount} />}
+      {credit.status === "APPROVED" && <UserCreditApprovedBanner amount={credit.requestedAmount} />}
       {credit.status === "REJECTED" && <UserCreditRejectedBanner />}
 
       <div>

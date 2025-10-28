@@ -1,10 +1,10 @@
 "use client";
 
-import { useAdminContext } from "@/store/adminContext";
+import { useUserContext } from "@/store/userContext";
 import { notFound } from "next/navigation";
 
-export default function CreditAdminDetailsCompany({ id }: { id: number }) {
-  const { state } = useAdminContext();
+export default function UserCreditDetailsCompany({ id }: { id: number }) {
+  const { state } = useUserContext();
 
   const credit = state.credits.find((credit) => credit.id === id);
 
