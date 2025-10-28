@@ -15,6 +15,8 @@ export async function apiFetch<TData = unknown, TBody = unknown>(
     process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api/v1";
   const url = `${baseUrl}${endpoint}`;
 
+  const token = localStorage.getItem("access_token");
+
   console.log("🔗 Fetching:", url, options);
 
   try {
@@ -22,7 +24,7 @@ export async function apiFetch<TData = unknown, TBody = unknown>(
       method: options.method || "GET",
       headers: {
         "Content-Type": "application/json",
-        ...(options.token ? { Authorization: `Bearer ${options.token}` } : {}),
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
       ...(options.body ? { body: JSON.stringify(options.body) } : {}),
     });

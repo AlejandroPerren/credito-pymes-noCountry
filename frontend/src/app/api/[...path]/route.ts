@@ -5,15 +5,19 @@ async function handler(req: NextRequest) {
   const path = pathname.replace('/api', '');
   const url = `${process.env.BACKEND_URL}${path}${search}`;
 
-  const headers = new Headers(req.headers);
-  const token = headers.get('Authorization');
-
-  if (token) {
-    // Here you can add your logic to decode the token and handle the session
-    // For now, we just forward the token
+  const headers = new Headers();
+  const cookie = req.headers.get('cookie');
+  console.log('Cookie received by proxy:', cookie);
+  if (cookie) {
+    headers.set('cookie', cookie);
   }
 
-  console.log('Request method:', req.method);
+  Object.entries(req.headers).forEach(([key, value]) => {
+    if (key.toLowerCase() !== 'cookie') {
+      headers.set(key, value);
+    }
+  });
+
   const response = await fetch(url, {
     method: req.method,
     headers,
@@ -21,10 +25,16 @@ async function handler(req: NextRequest) {
     duplex: 'half',
   } as any);
 
+  const responseHeaders = new Headers(response.headers);
+
+  if (response.headers.has('set-cookie')) {
+    responseHeaders.set('set-cookie', response.headers.get('set-cookie') as any);
+  }
+
   return new NextResponse(response.body, {
     status: response.status,
     statusText: response.statusText,
-    headers: response.headers,
+    headers: responseHeaders,
   });
 }
 

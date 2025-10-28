@@ -1,5 +1,16 @@
+"use client";
+import { useSection } from "@/store/sectionContext";
+import KycForm from "./KycForm";
+import SignatureForm from "./SignatureForm";
+
 const ValidateKycForm = () => {
-  return <div>Validate KYC Form</div>;
+  const { state } = useSection();
+
+  return (
+    <div>
+      {state.currentSection === "kyc" ? <KycForm /> : <SignatureForm />}
+    </div>
+  );
 };
 
 export default ValidateKycForm;
