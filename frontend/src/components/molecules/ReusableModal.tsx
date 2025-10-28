@@ -1,11 +1,6 @@
 "use client";
 import { useModal } from "@/store/modalContext";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import CreateCompanyForm from "./modal-content/CreateCompanyForm";
 import ValidateKycForm from "./modal-content/ValidateKycForm";
 import CreateCreditForm from "./modal-content/CreateCreditForm";
@@ -34,10 +29,14 @@ const ReusableModal = () => {
 
   return (
     <Dialog open={state.isModalOpen}>
-      <DialogContent onInteractOutside={(e) => e.preventDefault()}>
+      <DialogContent onInteractOutside={(e) => e.preventDefault()} showCloseButton={false}>
         <DialogHeader>
-          <DialogTitle>{state.modalType}</DialogTitle>
-          <Button onClick={() => dispatch({ type: "CLOSE_MODAL" })}>X</Button>
+          {state.modalType === "createCompany" && <DialogTitle>Registrar Compañía</DialogTitle>}
+          {state.modalType === "createCredit" && <DialogTitle>Solicitar Crédito</DialogTitle>}
+          {state.modalType === "validateKyc" && <DialogTitle>Verificar Identidad</DialogTitle>}
+          <Button className="absolute top-0 right-0" variant="ghost" onClick={() => dispatch({ type: "CLOSE_MODAL" })}>
+            X
+          </Button>
         </DialogHeader>
         {renderModalContent()}
       </DialogContent>

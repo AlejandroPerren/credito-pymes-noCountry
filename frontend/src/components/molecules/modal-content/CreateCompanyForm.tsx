@@ -21,7 +21,11 @@ const companySchema = z.object({
 
 const CreateCompanyForm = () => {
   const { dispatch: dispatchModal } = useModal();
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(companySchema),
   });
 
@@ -42,40 +46,55 @@ const CreateCompanyForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Label htmlFor="businessName">Business Name</Label>
-      <Input id="businessName" type="text" {...register("businessName")} />
-      {errors.businessName && <p>{errors.businessName.message}</p>}
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-brand-sm">
+      <div className="flex flex-col">
+        <Label htmlFor="businessName">Razón social</Label>
+        <Input id="businessName" type="text" {...register("businessName")} />
+        {errors.businessName && <p>{errors.businessName.message}</p>}
+      </div>
 
-      <Label htmlFor="taxId">Tax ID</Label>
-      <Input id="taxId" type="text" {...register("taxId")} />
-      {errors.taxId && <p>{errors.taxId.message}</p>}
+      <div className="flex flex-col">
+        <Label htmlFor="taxId">CUIT / CUIL</Label>
+        <Input id="taxId" type="text" {...register("taxId")} />
+        {errors.taxId && <p>{errors.taxId.message}</p>}
+      </div>
 
-      <Label htmlFor="address">Address</Label>
-      <Input id="address" type="text" {...register("address")} />
-      {errors.address && <p>{errors.address.message}</p>}
+      <div className="flex flex-col">
+        <Label htmlFor="address">Domicilio Fiscal</Label>
+        <Input id="address" type="text" {...register("address")} />
+        {errors.address && <p>{errors.address.message}</p>}
+      </div>
 
-      <Label htmlFor="phone">Phone</Label>
-      <Input id="phone" type="text" {...register("phone")} />
-      {errors.phone && <p>{errors.phone.message}</p>}
+      <div className="flex flex-col">
+        <Label htmlFor="phone">Teléfono</Label>
+        <Input id="phone" type="text" {...register("phone")} />
+        {errors.phone && <p>{errors.phone.message}</p>}
+      </div>
 
-      <Label htmlFor="activity">Activity</Label>
-      <Input id="activity" type="text" {...register("activity")} />
-      {errors.activity && <p>{errors.activity.message}</p>}
+      <div className="flex flex-col">
+        <Label htmlFor="activity">Actividad Económica</Label>
+        <Input id="activity" type="text" {...register("activity")} />
+        {errors.activity && <p>{errors.activity.message}</p>}
+      </div>
+      <div className="flex flex-col">
+        <Label htmlFor="incorporationDate">Fecha de Constitución</Label>
+        <Input id="incorporationDate" type="date" {...register("incorporationDate", { valueAsDate: true })} />
+        {errors.incorporationDate && <p>{errors.incorporationDate.message}</p>}
+      </div>
 
-      <Label htmlFor="incorporationDate">Incorporation Date</Label>
-      <Input id="incorporationDate" type="date" {...register("incorporationDate", { valueAsDate: true })} />
-      {errors.incorporationDate && <p>{errors.incorporationDate.message}</p>}
+      <div className="flex flex-col">
+        <Label htmlFor="annualRevenue">Ingresos Anuales</Label>
+        <Input id="annualRevenue" type="number" {...register("annualRevenue", { valueAsNumber: true })} />
+        {errors.annualRevenue && <p>{errors.annualRevenue.message}</p>}
+      </div>
 
-      <Label htmlFor="annualRevenue">Annual Revenue</Label>
-      <Input id="annualRevenue" type="number" {...register("annualRevenue", { valueAsNumber: true })} />
-      {errors.annualRevenue && <p>{errors.annualRevenue.message}</p>}
+      <div className="flex flex-col">
+        <Label htmlFor="userDni">DNI de Usuario</Label>
+        <Input id="userDni" type="text" {...register("userDni")} />
+        {errors.userDni && <p>{errors.userDni.message}</p>}
+      </div>
 
-      <Label htmlFor="userDni">User DNI</Label>
-      <Input id="userDni" type="text" {...register("userDni")} />
-      {errors.userDni && <p>{errors.userDni.message}</p>}
-
-      <Button type="submit">Create Company</Button>
+      <Button type="submit">Registrar</Button>
     </form>
   );
 };
