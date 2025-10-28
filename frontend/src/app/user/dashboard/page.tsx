@@ -1,9 +1,11 @@
 import VerifyIdentityBanner from "@/components/molecules/VerifyIdentityBanner";
+import UserWelcome from "@/components/organism/UserWelcome";
 
 export default function UserDashboardPage() {
   return (
-    <div className="p-brand-lg">
+    <div className="flex flex-col gap-brand-2xl p-brand-lg">
       <VerifyIdentityBanner />
+      <UserWelcome />
     </div>
   );
 }
