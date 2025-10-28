@@ -29,26 +29,23 @@ export const AuthFormLogin = () => {
   const remember = watch("remember", false);
 
   const onSubmit = async (data: LoginFormData) => {
-    const response = await apiFetch<{ access_token: string; role: string }>(
-      '/auth/login',
-      {
-        method: 'POST',
-        body: { email: data.email, pass: data.password },
-      },
-    );
+    const response = await apiFetch<{ access_token: string; role: string }>("/auth/login", {
+      method: "POST",
+      body: { email: data.email, pass: data.password },
+    });
 
     if (response.ok && response.data) {
-      localStorage.setItem('access_token', response.data.access_token);
-      localStorage.setItem('role', response.data.role);
+      localStorage.setItem("access_token", response.data.access_token);
+      localStorage.setItem("role", response.data.role);
 
-      if (response.data.role === 'ADMIN') {
-        window.location.href = '/admin';
+      if (response.data.role === "ADMIN") {
+        window.location.href = "/admin";
       } else {
-        window.location.href = '/user';
+        window.location.href = "/user";
       }
     } else {
       // Handle login error
-      console.error('Login failed:', response.error);
+      console.error("Login failed:", response.error);
     }
   };
 
@@ -77,22 +74,14 @@ export const AuthFormLogin = () => {
           <Checkbox
             id="remember"
             checked={remember}
-            onCheckedChange={(checked) =>
-              setValue("remember", checked as boolean)
-            }
+            onCheckedChange={(checked) => setValue("remember", checked as boolean)}
           />
-          <label
-            htmlFor="remember"
-            className="text-gray-300 cursor-pointer select-none"
-          >
+          <label htmlFor="remember" className="text-gray-300 cursor-pointer select-none">
             {TEXTS.labels.remember}
           </label>
         </div>
 
-        <Link
-          href="/forgot-password"
-          className="text-blue-400 hover:underline font-medium"
-        >
+        <Link href="/forgot-password" className="text-blue-400 hover:underline font-medium">
           {TEXTS.links.forgotPassword}
         </Link>
       </div>
@@ -103,26 +92,14 @@ export const AuthFormLogin = () => {
         {isSubmitting ? TEXTS.buttons.submitting : TEXTS.buttons.submit}
       </Button>
 
-      <Button
-        type="button"
-        variant="ghost"
-        className="w-full text-blue-400 hover:text-blue-300"
-        asChild
-      >
+      <Button type="button" variant="ghost" className="w-full text-blue-400 hover:text-blue-300" asChild>
         <Link href={ROUTES.AUTH.REGISTER}>{TEXTS.buttons.register}</Link>
       </Button>
 
-      <Button
-        type="button"
-        variant="outline"
-        className="w-full text-gray-300 hover:text-white"
-        asChild
-      >
+      <Button type="button" variant="outline" className="w-full text-gray-300 hover:text-white" asChild>
         <Link href={ROUTES.HELP.CONTACT}>{TEXTS.buttons.help}</Link>
       </Button>
-      <p className="text-xs text-center text-gray-500 mt-3">
-        {TEXTS.footer.message}
-      </p>
+      <p className="text-xs text-center text-gray-500 mt-3">{TEXTS.footer.message}</p>
     </form>
   );
 };
