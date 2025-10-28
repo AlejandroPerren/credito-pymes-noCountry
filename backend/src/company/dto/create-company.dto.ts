@@ -1,5 +1,11 @@
-import { IsString, IsNotEmpty, IsOptional, IsDate, IsNumber } from 'class-validator';
-
+import {
+  IsString,
+  IsNotEmpty,
+  IsOptional,
+  IsDate,
+  IsNumber,
+} from 'class-validator';
+import { Type } from 'class-transformer';
 export class CreateCompanyDto {
   @IsString()
   @IsNotEmpty()
@@ -23,6 +29,7 @@ export class CreateCompanyDto {
 
   @IsDate()
   @IsOptional()
+  @Type(() => Date)
   incorporationDate?: Date;
 
   @IsNumber()

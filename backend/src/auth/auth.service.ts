@@ -41,7 +41,6 @@ export class AuthService {
   }
 
   logout() {
-    // res.clearCookie('access_token');
     return { message: 'Logout exitoso' };
   }
 }

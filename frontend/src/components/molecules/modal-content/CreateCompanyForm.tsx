@@ -28,7 +28,10 @@ const CreateCompanyForm = () => {
   const onSubmit = async (data: z.infer<typeof companySchema>) => {
     const response = await apiFetch("/company", {
       method: "POST",
-      body: data,
+      body: {
+        ...data,
+        incorporationDate: data.incorporationDate ? new Date(data.incorporationDate).toISOString() : undefined,
+      },
     });
 
     if (response.ok) {

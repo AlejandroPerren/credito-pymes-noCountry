@@ -3,7 +3,6 @@ export type FetchMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 export interface FetchOptions<TBody = unknown> {
   method?: FetchMethod; // Méthods HTTP (por defecto GET)
   body?: TBody;
-  token?: string | null; // Token JWT (if endpoint require Auth)
 }
 
 // Generic function reutilizable
@@ -11,11 +10,8 @@ export async function apiFetch<TData = unknown, TBody = unknown>(
   endpoint: string,
   options: FetchOptions<TBody> = {}
 ): Promise<{ ok: boolean; data: TData | null; error?: string }> {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api/v1";
+  const baseUrl = "/api";
   const url = `${baseUrl}${endpoint}`;
-
-  const token = localStorage.getItem("access_token");
 
   console.log("🔗 Fetching:", url, options);
 
@@ -24,7 +20,6 @@ export async function apiFetch<TData = unknown, TBody = unknown>(
       method: options.method || "GET",
       headers: {
         "Content-Type": "application/json",
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
       ...(options.body ? { body: JSON.stringify(options.body) } : {}),
     });
