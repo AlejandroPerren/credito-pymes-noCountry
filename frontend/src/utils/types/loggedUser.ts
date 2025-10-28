@@ -1,5 +1,5 @@
 export type LoggedUser = {
   username: string;
-  role: "user" | "admin";
+  role: "USER" | "ADMIN";
   avatar?: string;
 };

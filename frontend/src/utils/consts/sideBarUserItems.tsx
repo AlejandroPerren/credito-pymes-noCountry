@@ -2,12 +2,12 @@ import { FolderOpen, LayoutDashboard } from "lucide-react";
 
 export const sideBarUserItems = [
   {
-    href: "/dashboard",
+    href: "/user/dashboard",
     icon: <LayoutDashboard size={16} />,
     text: "Dashboard",
   },
   {
-    href: "/solicitudes",
+    href: "/user/solicitudes",
     icon: <FolderOpen size={16} />,
     text: "Solicitudes",
   },
