@@ -1,7 +1,7 @@
 export default function UserSolicitudesPage() {
   return (
-    <div>
+    <div className="p-brand-lg">
       <h1>SOLICITUDES</h1>
     </div>
   );
-};
+}

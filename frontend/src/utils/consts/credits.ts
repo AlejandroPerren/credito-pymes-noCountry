@@ -1,4 +1,4 @@
-import { Credit } from "../types/credit";
+import { Credit, UserCredit } from "../types/credit";
 
 export const mockCredits: Credit[] = [
   {
@@ -114,6 +114,63 @@ export const mockCredits: Credit[] = [
       phone: "605 665 1212",
       activity: "Servicios de impresión offset y digital",
     },
+    requestedAmmount: 480000.0,
+    requestDate: "22/10/2025",
+    status: "NEW",
+  },
+];
+
+export const mockUserCredits: UserCredit[] = [
+  {
+    id: 18,
+    requestedAmmount: 120000.0,
+    requestDate: "22/10/2025",
+    status: "PENDING",
+  },
+  {
+    id: 19,
+    requestedAmmount: 95000.0,
+    requestDate: "22/10/2025",
+    status: "PENDING",
+  },
+  {
+    id: 20,
+    requestedAmmount: 200000.0,
+    requestDate: "22/10/2025",
+    status: "APPROVED",
+  },
+  {
+    id: 21,
+    requestedAmmount: 320000.0,
+    requestDate: "22/10/2025",
+    status: "PENDING",
+  },
+  {
+    id: 22,
+    requestedAmmount: 890000.0,
+    requestDate: "22/10/2025",
+    status: "PENDING",
+  },
+  {
+    id: 23,
+    requestedAmmount: 155000.0,
+    requestDate: "22/10/2025",
+    status: "REJECTED",
+  },
+  {
+    id: 24,
+    requestedAmmount: 75000.0,
+    requestDate: "22/10/2025",
+    status: "NEW",
+  },
+  {
+    id: 25,
+    requestedAmmount: 135000.0,
+    requestDate: "22/10/2025",
+    status: "NEW",
+  },
+  {
+    id: 26,
     requestedAmmount: 480000.0,
     requestDate: "22/10/2025",
     status: "NEW",

@@ -1,22 +1,34 @@
 import { Dispatch } from "react";
 import { LoggedUser } from "./loggedUser";
-import { Credit } from "./credit";
+import { Credit, UserCredit } from "./credit";
 
 export interface GlobalContextState {
   loggedUser: LoggedUser | null;
 }
 
-export interface AdminContextState {
-  credits: Credit[];
-}
 export type GlobalContextAction = { type: "LOGIN_USER"; payload: LoggedUser } | { type: "LOGOUT_USER" };
-
-export type AdminContextAction = { type: "UNDER_DEV" };
 
 export interface GlobalContextT {
   state: GlobalContextState;
   dispatch: Dispatch<GlobalContextAction>;
 }
+
+export interface UserContextState {
+  credits: UserCredit[];
+}
+
+export type UserContextAction = { type: "UNDER_DEV" };
+
+export interface UserContextT {
+  state: UserContextState;
+  dispatch: Dispatch<AdminContextAction>;
+}
+
+export interface AdminContextState {
+  credits: Credit[];
+}
+
+export type AdminContextAction = { type: "UNDER_DEV" };
 
 export interface AdminContextT {
   state: AdminContextState;
