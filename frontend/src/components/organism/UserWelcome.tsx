@@ -8,18 +8,20 @@ import Link from "next/link";
 
 export default function UserWelcome({ variant }: { variant: "new" | "old" }) {
   const {
-    state: { loggedUser },
+    state: {
+      loggedUser: { user },
+    },
   } = useGlobalContext();
 
   if (variant === "old")
     return (
       <div className="flex flex-col gap-brand-md">
-        <h3 className="heading-3">Bienvenido, {loggedUser?.username}</h3>
+        <h3 className="heading-3">Bienvenido, {user?.username}</h3>
         <div className="flex gap-brand-md">
           <p className="w-full text-muted-foreground">Aquí tienes un resumen de lo más importante de tu cuenta</p>
           <Button asChild>
             <Link href="/user/solicitudes/nueva">
-              <Plus /> Nueva Solicitud
+              <Plus /> Nueva solicitud
             </Link>
           </Button>
         </div>
@@ -30,7 +32,7 @@ export default function UserWelcome({ variant }: { variant: "new" | "old" }) {
     return (
       <div className="flex flex-col items-center gap-brand-xl">
         <div className="flex flex-col items-center gap-brand-md">
-          <h3 className="heading-3">Bienvenido, {loggedUser?.username}</h3>
+          <h3 className="heading-3">Bienvenido, {user?.username}</h3>
           <p className="text-muted-foreground">
             Estás listo para inicar tu primera solicitud de crédito. Nuestro proceso es simple, seguro y diseñado
             especialmente para PYMEs como la tuya.

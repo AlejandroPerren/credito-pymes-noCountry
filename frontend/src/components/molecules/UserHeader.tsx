@@ -4,18 +4,15 @@ import { Bell } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { useGlobalContext } from "@/store/globalContext";
-import { useRouter } from "next/navigation";
 
 export default function UserHeader() {
-  const router = useRouter();
   const {
-    state: { loggedUser },
+    state: {
+      loggedUser: { user, status },
+    },
   } = useGlobalContext();
 
-  if (loggedUser === null) {
-    router.push("/");
-    return <div></div>;
-  }
+  if (status === "loading" || !user) return <div></div>;
 
   return (
     <div className="flex gap-brand-md">
@@ -23,16 +20,16 @@ export default function UserHeader() {
         <Bell />
       </Button>
       <div className="flex items-center justify-center gap-brand-sm">
-        {loggedUser.avatar ? (
+        {user.avatar ? (
           <div className="relative w-10 aspect-square flex items-center justify-center rounded-full overflow-hidden">
-            <Image src={loggedUser.avatar} alt={`${loggedUser.username} avatar image`} fill />
+            <Image src={user.avatar} alt={`${user.username} avatar image`} fill />
           </div>
         ) : (
           <div className="w-10 aspect-square flex items-center justify-center rounded-full bg-popover">
-            {loggedUser.username.slice(0, 2).toUpperCase()}
+            {user.username.slice(0, 2).toUpperCase()}
           </div>
         )}
-        <p className="whitespace-nowrap">{loggedUser.username}</p>
+        <p className="whitespace-nowrap">{user.username}</p>
       </div>
     </div>
   );

@@ -8,7 +8,9 @@ import { sideBarUserItems } from "@/utils/consts/sideBarUserItems";
 
 export default function SideBar() {
   const {
-    state: { loggedUser },
+    state: {
+      loggedUser: { user },
+    },
   } = useGlobalContext();
 
   return (
@@ -19,14 +21,14 @@ export default function SideBar() {
       </div>
 
       <div className="flex flex-col gap-brand-md">
-        {loggedUser?.role === "USER" &&
+        {user?.role === "USER" &&
           sideBarUserItems.map((item, i) => (
             <SidebarActiveLink key={i} href={item.href}>
               {item.icon}
               <p className="paragraph-small-medium">{item.text}</p>
             </SidebarActiveLink>
           ))}
-        {loggedUser?.role === "ADMIN" &&
+        {user?.role === "ADMIN" &&
           sideBarAdminItems.map((item, i) => (
             <SidebarActiveLink key={i} href={item.href}>
               {item.icon}

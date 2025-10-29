@@ -1,5 +1,7 @@
 export type LoggedUser = {
   username: string;
-  role: "USER" | "ADMIN";
+  role: LoggedUserStatus;
   avatar?: string;
 };
+
+export type LoggedUserStatus = "USER" | "ADMIN";

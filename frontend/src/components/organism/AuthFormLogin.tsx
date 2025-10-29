@@ -10,10 +10,20 @@ import Link from "next/link";
 import { TEXTS } from "@/utils/consts/login";
 import { LoginFormData, loginSchema } from "@/utils/types/login";
 import { ROUTES } from "@/utils/config/routesApp/routes";
-import { useNavigateApp } from "@/utils/hooks/useNavigate";
 import { apiFetch } from "@/network/utils/FetchApi";
+import { redirect } from "next/navigation";
+import { LoggedUser, LoggedUserStatus } from "@/utils/types/loggedUser";
+import { useGlobalContext } from "@/store/globalContext";
+import { loginUser, loginUserLoading } from "@/store/globalContextActions";
+import { useEffect } from "react";
 
 export const AuthFormLogin = () => {
+  const {
+    state: {
+      loggedUser: { user, status },
+    },
+    dispatch,
+  } = useGlobalContext();
   const {
     register,
     handleSubmit,
@@ -24,27 +34,41 @@ export const AuthFormLogin = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const { toDashboard } = useNavigateApp();
-
   const remember = watch("remember", false);
 
   const onSubmit = async (data: LoginFormData) => {
-    const response = await apiFetch<{ role: string }>("/auth/login", {
+    const response = await apiFetch<{ role: LoggedUserStatus; firstname: string; lastname: string }>("/auth/login", {
       method: "POST",
       body: { email: data.email, pass: data.password },
     });
 
     if (response.ok && response.data) {
-      if (response.data.role === "ADMIN") {
-        window.location.href = "/admin";
-      } else {
-        window.location.href = "/user";
-      }
+      const loggedUser: LoggedUser = {
+        username: `${response.data.firstname} ${response.data.lastname}`,
+        role: response.data.role,
+      };
+
+      localStorage.setItem("loggedUser", JSON.stringify(loggedUser));
+
+      dispatch(loginUserLoading());
+      dispatch(loginUser(loggedUser));
     } else {
       // Handle login error
       console.error("Login failed:", response.error);
     }
   };
+
+  useEffect(() => {
+    if (user && status !== "loading") {
+      if (user.role === "ADMIN") {
+        redirect("/admin");
+      }
+
+      if (user.role === "USER") {
+        redirect("/user");
+      }
+    }
+  }, [user, status]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

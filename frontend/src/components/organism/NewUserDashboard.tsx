@@ -7,13 +7,14 @@ import { useEffect, useState } from "react";
 import CreateCompanyBanner from "../molecules/CreateCompanyBanner";
 
 export default function NewUserDashboard() {
-  const [hasCompany, setHasCompany] = useState(false);
+  const [hasCompany, setHasCompany] = useState(true);
 
   useEffect(() => {
     const fetchCompany = async () => {
       const response = await apiFetch("/company");
       if (response.ok && Array.isArray(response.data) && response.data.length === 0) {
-        setHasCompany(true);
+        console.log(response.data);
+        setHasCompany(false);
       }
     };
 
