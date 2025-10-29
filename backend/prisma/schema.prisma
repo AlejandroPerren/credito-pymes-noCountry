@@ -79,6 +79,8 @@ model KycAmlVerification {
   pep              Boolean // Indica si es una Persona Políticamente Expuesta
   verified         Boolean   @default(false) // Estado de verificación (true si fue aprobada)
   verificationDate DateTime? // Fecha de verificación (opcional)
+  dni_front        String? // URL de la imagen del DNI (frente)
+  dni_back         String? // URL de la imagen del DNI (dorso)
 
   credit Credit @relation(fields: [creditId], references: [id]) // Relación 1:1 con el crédito asociado
 }

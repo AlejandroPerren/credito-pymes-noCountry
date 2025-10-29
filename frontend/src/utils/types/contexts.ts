@@ -17,6 +17,7 @@ export type GlobalContextAction =
 export interface GlobalContextT {
   state: GlobalContextState;
   dispatch: Dispatch<GlobalContextAction>;
+  logout: () => void;
 }
 
 export interface UserContextState {

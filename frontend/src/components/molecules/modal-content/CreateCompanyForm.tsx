@@ -39,6 +39,8 @@ const CreateCompanyForm = () => {
     });
 
     if (response.ok) {
+      localStorage.setItem("companyId", response.data.id);
+      localStorage.setItem("userDni", response.data.userDni);
       dispatchModal({ type: "CLOSE_MODAL" });
     } else {
       console.error("Company creation failed:", response.error);

@@ -17,4 +17,12 @@ export class CreateKycAmlVerificationDto {
   @IsDate()
   @IsOptional()
   verificationDate?: Date;
+
+  @IsString()
+  @IsOptional()
+  dni_front?: string;
+
+  @IsString()
+  @IsOptional()
+  dni_back?: string;
 }

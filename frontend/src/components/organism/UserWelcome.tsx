@@ -1,12 +1,14 @@
 "use client";
 
 import { useGlobalContext } from "@/store/globalContext";
+import { useModal } from "@/store/modalContext";
 import { Card } from "../ui/card";
 import { ShieldCheck, Timer, Headphones, ArrowRight, Plus } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
 export default function UserWelcome({ variant }: { variant: "new" | "old" }) {
+  const { dispatch } = useModal();
   const {
     state: {
       loggedUser: { user },
@@ -78,7 +80,7 @@ export default function UserWelcome({ variant }: { variant: "new" | "old" }) {
         </div>
 
         <div className="flex flex-col items-center gap-brand-lg">
-          <Button>
+          <Button onClick={() => dispatch({ type: "OPEN_MODAL", payload: "createCredit" })}>
             Comenzar Solicitud <ArrowRight />
           </Button>
 
