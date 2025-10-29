@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateCreditDto } from './dto/create-credit.dto';
 import { UpdateCreditDto } from './dto/update-credit.dto';
+import { userCreditsMockup } from 'mockups/userCreditsMockup';
+import { allCreditsMockup } from 'mockups/allCreditsMockup';
 
 @Injectable()
 export class CreditService {
@@ -24,7 +26,12 @@ export class CreditService {
   }
 
   findAll() {
-    return this.prisma.credit.findMany();
+    // return this.prisma.credit.findMany();
+
+    // MOCKUPS
+
+    // return allCreditsMockup;
+    return userCreditsMockup;
   }
 
   findOne(id: number) {
