@@ -4,9 +4,13 @@ import { useAdminContext } from "@/store/adminContext";
 import { notFound } from "next/navigation";
 
 export default function CreditAdminDetailsCompany({ id }: { id: number }) {
-  const { state } = useAdminContext();
+  const {
+    state: {
+      credits: { data },
+    },
+  } = useAdminContext();
 
-  const credit = state.credits.find((credit) => credit.id === id);
+  const credit = data.find((credit) => credit.id === id);
 
   if (!credit) return notFound();
 

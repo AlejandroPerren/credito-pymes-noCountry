@@ -30,8 +30,8 @@ export class CreditService {
 
     // MOCKUPS
 
-    // return allCreditsMockup;
-    return userCreditsMockup;
+    return allCreditsMockup;
+    // return userCreditsMockup;
   }
 
   findOne(id: number) {
