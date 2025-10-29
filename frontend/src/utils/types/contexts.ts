@@ -20,10 +20,16 @@ export interface GlobalContextT {
 }
 
 export interface UserContextState {
-  credits: Credit[];
+  credits: {
+    data: Credit[];
+    status: ContextStatus;
+  };
 }
 
-export type UserContextAction = { type: "UNDER_DEV" };
+export type UserContextAction =
+  | { type: "LOAD_CREDITS_START" }
+  | { type: "LOAD_CREDITS_SUCCESS"; payload: Credit[] }
+  | { type: "LOAD_CREDITS_ERROR" };
 
 export interface UserContextT {
   state: UserContextState;

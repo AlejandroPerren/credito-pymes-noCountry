@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 export default function UserCreditDetailsCompany({ id }: { id: number }) {
   const { state } = useUserContext();
 
-  const credit = state.credits.find((credit) => credit.id === id);
+  const credit = state.credits.data.find((credit) => credit.id === id);
 
   if (!credit) return notFound();
 
