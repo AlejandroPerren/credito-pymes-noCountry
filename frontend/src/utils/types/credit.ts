@@ -10,6 +10,12 @@ export interface Credit {
 }
 
 export type CreditStatus = "NEW" | "PENDING" | "APPROVED" | "REJECTED" | "CANCELED" | "REVIEW";
+export type CreditStatusLabel = "Enviada" | "En revisión" | "Aprobada" | "Rechazada" | "Cancelada" | "Corregir";
+
+export interface SelectStatus {
+  status: CreditStatus;
+  label: CreditStatusLabel;
+}
 
 export interface CreditCountCard {
   icon: React.JSX.Element;

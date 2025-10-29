@@ -1,4 +1,4 @@
-import { Credit } from "../types/credit";
+import { Credit, SelectStatus } from "../types/credit";
 
 export const mockCredits: Credit[] = [
   {
@@ -244,3 +244,12 @@ export const mockUserCredits: Credit[] = [
     },
   },
 ];
+
+export const selectStatus: SelectStatus[] = [
+  { status: "NEW", label: "Enviada" },
+  { status: "PENDING", label: "En revisión" },
+  { status: "APPROVED", label: "Aprobada" },
+  { status: "REJECTED", label: "Rechazada" },
+  { status: "CANCELED", label: "Cancelada" },
+  { status: "REVIEW", label: "Corregir" },
+] as const;
