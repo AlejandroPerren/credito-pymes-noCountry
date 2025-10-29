@@ -1,17 +1,15 @@
 "use client";
 
-import { notFound, useRouter } from "next/navigation";
-import { Button } from "../ui/button";
-import { ArrowLeft } from "lucide-react";
+import { notFound } from "next/navigation";
 import StatusLabel from "../atoms/StatusLabel";
 import { useUserContext } from "@/store/userContext";
 import UserCreditDetailsReviewBanner from "./UserCreditDetailsReviewBanner";
 import UserCreditDetailsApprovedBanner from "./UserCreditDetailsApprovedBanner";
 import UserCreditDetailsRejectedBanner from "./UserCreditDetailsRejectedBanner";
+import RouterBackBtn from "../atoms/RouterBackBtn";
 
 export default function CreditUserDetailsHeader({ id }: { id: number }) {
   const { state } = useUserContext();
-  const router = useRouter();
 
   const credit = state.credits.data.find((credit) => credit.id === id);
 
@@ -20,10 +18,7 @@ export default function CreditUserDetailsHeader({ id }: { id: number }) {
   return (
     <div className="flex flex-col gap-brand-2xl">
       <div className="flex gap-brand-lg">
-        <Button variant="ghost" onClick={() => router.back()}>
-          <ArrowLeft />
-          ...
-        </Button>
+        <RouterBackBtn />
 
         <div className="flex gap-brand-md">
           <div className="flex flex-col gap-brand-md">
