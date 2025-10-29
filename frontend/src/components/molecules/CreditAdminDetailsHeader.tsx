@@ -6,9 +6,13 @@ import StatusLabel from "../atoms/StatusLabel";
 import RouterBackBtn from "../atoms/RouterBackBtn";
 
 export default function CreditAdminDetailsHeader({ id }: { id: number }) {
-  const { state } = useAdminContext();
+  const {
+    state: {
+      credits: { data },
+    },
+  } = useAdminContext();
 
-  const credit = state.credits.find((credit) => credit.id === id);
+  const credit = data.find((credit) => credit.id === id);
 
   if (!credit) return notFound();
 

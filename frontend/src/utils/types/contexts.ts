@@ -37,10 +37,16 @@ export interface UserContextT {
 }
 
 export interface AdminContextState {
-  credits: Credit[];
+  credits: {
+    data: Credit[];
+    status: ContextStatus;
+  };
 }
 
-export type AdminContextAction = { type: "UNDER_DEV" };
+export type AdminContextAction =
+  | { type: "LOAD_CREDITS_START" }
+  | { type: "LOAD_CREDITS_SUCCESS"; payload: Credit[] }
+  | { type: "LOAD_CREDITS_ERROR" };
 
 export interface AdminContextT {
   state: AdminContextState;
