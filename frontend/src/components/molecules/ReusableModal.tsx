@@ -6,6 +6,7 @@ import ValidateKycForm from "./modal-content/ValidateKycForm";
 import CreateCreditForm from "./modal-content/CreateCreditForm";
 import { SectionProvider } from "@/store/sectionContext";
 import { Button } from "../ui/button";
+import LogoutUser from "./modal-content/LogoutUser";
 
 const ReusableModal = () => {
   const { state, dispatch } = useModal();
@@ -22,6 +23,8 @@ const ReusableModal = () => {
         );
       case "createCredit":
         return <CreateCreditForm />;
+      case "logoutUser":
+        return <LogoutUser />;
       default:
         return null;
     }
@@ -34,6 +37,7 @@ const ReusableModal = () => {
           {state.modalType === "createCompany" && <DialogTitle>Registrar Compañía</DialogTitle>}
           {state.modalType === "createCredit" && <DialogTitle>Solicitar Crédito</DialogTitle>}
           {state.modalType === "validateKyc" && <DialogTitle>Verificar Identidad</DialogTitle>}
+          {state.modalType === "logoutUser" && <DialogTitle></DialogTitle>}
           <Button className="absolute top-0 right-0" variant="ghost" onClick={() => dispatch({ type: "CLOSE_MODAL" })}>
             X
           </Button>
