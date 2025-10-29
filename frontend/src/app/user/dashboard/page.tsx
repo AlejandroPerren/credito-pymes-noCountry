@@ -11,8 +11,8 @@ export default function UserDashboardPage() {
 
   return (
     <div className="h-full flex flex-col overflow-hidden">
-      {credits.length === 0 && <NewUserDashboard />}
-      {credits.length > 0 && <OldUserDashboard />}
+      {credits.data.length === 0 && credits.status === "idle" && <NewUserDashboard />}
+      {credits.data.length > 0 && <OldUserDashboard />}
     </div>
   );
 }

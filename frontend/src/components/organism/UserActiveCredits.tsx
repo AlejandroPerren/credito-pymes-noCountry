@@ -9,7 +9,7 @@ export default function UserActiveCredits() {
     state: { credits },
   } = useUserContext();
 
-  const activeCredits = credits.filter(
+  const activeCredits = credits.data.filter(
     (credit) => credit.status !== "APPROVED" && credit.status !== "REJECTED" && credit.status !== "CANCELED"
   );
 
