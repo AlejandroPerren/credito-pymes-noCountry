@@ -8,8 +8,8 @@ import { TEXTS } from "@/utils/consts/register";
 import { RegisterFormData, registerSchema } from "@/utils/types/register";
 import Link from "next/link";
 import { ROUTES } from "@/utils/config/routesApp/routes";
-import { useNavigateApp } from "@/utils/hooks/useNavigate";
 import { apiFetch } from "@/network/utils/FetchApi";
+import { redirect } from "next/navigation";
 
 export const AuthFormRegister = () => {
   const {
@@ -20,24 +20,21 @@ export const AuthFormRegister = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  const { toDashboard } = useNavigateApp();
-
   const onSubmit = async (data: RegisterFormData) => {
-    const [firstName, ...lastName] = data.name.split(' ');
-    const response = await apiFetch('/users', {
-      method: 'POST',
+    const response = await apiFetch("/users", {
+      method: "POST",
       body: {
         dni: data.dni,
-        firstName,
-        lastName: "Holaa",
+        firstName: data.firstname,
+        lastName: data.lastname,
         email: data.email,
         password: data.password,
       },
     });
-    console.log('Registration response:', response);
+    console.log("Registration response:", response);
     if (response.ok) {
       // For now, just redirect to dashboard. Later we can redirect to login.
-      toDashboard();
+      redirect("/login");
     }
   };
 
@@ -45,11 +42,18 @@ export const AuthFormRegister = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div className="grid grid-cols-2 gap-3">
         <AuthInput
-          id="name"
-          label={TEXTS.labels.name}
-          placeholder={TEXTS.placeholders.name}
-          register={register("name")}
-          error={errors.name?.message}
+          id="firstname"
+          label={TEXTS.labels.firstname}
+          placeholder={TEXTS.placeholders.firstname}
+          register={register("firstname")}
+          error={errors.firstname?.message}
+        />
+        <AuthInput
+          id="lastname"
+          label={TEXTS.labels.lastname}
+          placeholder={TEXTS.placeholders.lastname}
+          register={register("lastname")}
+          error={errors.lastname?.message}
         />
         <AuthInput
           id="dni"
@@ -93,20 +97,14 @@ export const AuthFormRegister = () => {
 
       <p className="text-sm text-center text-gray-400 my-2">
         {TEXTS.links.haveAccount}{" "}
-        <Link
-          href={ROUTES.AUTH.LOGIN}
-          className="text-blue-400 hover:underline"
-        >
+        <Link href={ROUTES.AUTH.LOGIN} className="text-blue-400 hover:underline">
           {TEXTS.links.login}
         </Link>
       </p>
 
       <p className="text-xs text-center text-gray-500">
         {TEXTS.links.termsPrefix}{" "}
-        <Link
-          href={ROUTES.HELP.TERMS}
-          className="text-blue-400 hover:underline"
-        >
+        <Link href={ROUTES.HELP.TERMS} className="text-blue-400 hover:underline">
           {TEXTS.links.terms}
         </Link>
         .
