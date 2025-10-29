@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { Button } from "../ui/button";
 import { ShieldCheck, Timer, Headset } from "lucide-react";
+import CreateAccountBtn from "../atoms/CreateAccountBtn";
 
 export default function HeroSection() {
   return (
@@ -12,7 +12,7 @@ export default function HeroSection() {
             Solicita créditos, sube tu documentación y recibe una respuesta en tiempo récord. Todo desde un solo lugar.
           </p>
         </div>
-        <Button size="lg">Crear Cuenta</Button>
+        <CreateAccountBtn>Crear Cuenta</CreateAccountBtn>
         <div className="flex gap-brand-md">
           <div className="flex gap-brand-sm items-center">
             <ShieldCheck width={16} height={16} />
