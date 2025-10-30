@@ -5,10 +5,12 @@ import { TrendingUpDown } from "lucide-react";
 
 export default function NewCreditsPanel() {
   const {
-    state: { credits },
+    state: {
+      credits: { data },
+    },
   } = useAdminContext();
 
-  const newCreditsNum = credits.filter((item) => item.status === "NEW").length;
+  const newCreditsNum = data.filter((item) => item.status === "NEW").length;
 
   return (
     <div className="flex gap-brand-md items-center rounded-brand-lg bg-popover px-brand-md py-brand-lg">

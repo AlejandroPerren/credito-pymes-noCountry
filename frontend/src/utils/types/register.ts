@@ -3,7 +3,8 @@ import { TEXTS } from "../consts/register";
 
 export const registerSchema = z
   .object({
-    name: z.string().min(2, TEXTS.errors.nameRequired),
+    firstname: z.string().min(2, TEXTS.errors.firstnameRequired),
+    lastname: z.string().min(2, TEXTS.errors.lastnameRequired),
     dni: z
       .string()
       .min(6, TEXTS.errors.dniRequired)

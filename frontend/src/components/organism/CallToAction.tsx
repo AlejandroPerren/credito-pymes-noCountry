@@ -1,4 +1,4 @@
-import { Button } from "../ui/button";
+import CreateAccountBtn from "../atoms/CreateAccountBtn";
 
 export default function CallToAction() {
   return (
@@ -10,7 +10,7 @@ export default function CallToAction() {
             Únete a miles de empresarios que ya confían en nosotros para hacer crecer sus negocios.
           </p>
         </div>
-        <Button>Crear Cuenta Gratis</Button>
+        <CreateAccountBtn>Crear Cuenta Gratis</CreateAccountBtn>
       </div>
     </div>
   );

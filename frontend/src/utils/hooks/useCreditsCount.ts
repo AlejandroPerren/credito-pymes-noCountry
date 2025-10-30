@@ -5,15 +5,17 @@ import { creditsCountsInitialState } from "../consts/creditsCountsInitialState";
 
 export function useCreditsCount() {
   const {
-    state: { credits },
+    state: {
+      credits: { data },
+    },
   } = useAdminContext();
 
-  const totalCount = credits.length;
-  const newCount = credits.filter((credit) => credit.status === "NEW").length;
-  const pendingCount = credits.filter((credit) => credit.status === "PENDING").length;
+  const totalCount = data.length;
+  const newCount = data.filter((credit) => credit.status === "NEW").length;
+  const pendingCount = data.filter((credit) => credit.status === "PENDING").length;
   const forReviewCount = 0;
-  const approvedCount = credits.filter((credit) => credit.status === "APPROVED").length;
-  const rejectedCount = credits.filter((credit) => credit.status === "REJECTED").length;
+  const approvedCount = data.filter((credit) => credit.status === "APPROVED").length;
+  const rejectedCount = data.filter((credit) => credit.status === "REJECTED").length;
 
   const creditsCounts = creditsCountsInitialState.map((item) => {
     switch (item.status) {

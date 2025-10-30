@@ -1,4 +1,4 @@
-export type ModalType = "createCompany" | "validateKyc" | "createCredit";
+export type ModalType = "createCompany" | "validateKyc" | "createCredit" | "logoutUser";
 
 export interface ModalState {
   isModalOpen: boolean;

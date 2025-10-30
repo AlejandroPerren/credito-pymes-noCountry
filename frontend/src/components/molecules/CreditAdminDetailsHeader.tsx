@@ -1,25 +1,24 @@
 "use client";
 
 import { useAdminContext } from "@/store/adminContext";
-import { notFound, useRouter } from "next/navigation";
-import { Button } from "../ui/button";
-import { ArrowLeft } from "lucide-react";
+import { notFound } from "next/navigation";
 import StatusLabel from "../atoms/StatusLabel";
+import RouterBackBtn from "../atoms/RouterBackBtn";
 
 export default function CreditAdminDetailsHeader({ id }: { id: number }) {
-  const { state } = useAdminContext();
-  const router = useRouter();
+  const {
+    state: {
+      credits: { data },
+    },
+  } = useAdminContext();
 
-  const credit = state.credits.find((credit) => credit.id === id);
+  const credit = data.find((credit) => credit.id === id);
 
   if (!credit) return notFound();
 
   return (
     <div className="flex gap-brand-lg">
-      <Button variant="ghost" onClick={() => router.back()}>
-        <ArrowLeft />
-        ...
-      </Button>
+      <RouterBackBtn />
 
       <div className="flex gap-brand-md">
         <div className="flex flex-col gap-brand-md">
