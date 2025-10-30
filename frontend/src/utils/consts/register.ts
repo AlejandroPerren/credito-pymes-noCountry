@@ -1,13 +1,15 @@
 export const TEXTS = {
   labels: {
-    name: "Nombre Completo",
+    firstname: "Nombre",
+    lastname: "Apellido",
     dni: "DNI",
     email: "Correo",
     password: "Contraseña",
     confirmPassword: "Confirmar",
   },
   placeholders: {
-    name: "Nombre Legal",
+    firstname: "Nombre",
+    lastname: "Apellido",
     dni: "12345678",
     email: "correo@ejemplo.com",
     password: "••••••••",
@@ -24,7 +26,8 @@ export const TEXTS = {
     terms: "Términos y condiciones",
   },
   errors: {
-    nameRequired: "El nombre es obligatorio",
+    firstnameRequired: "El nombre es obligatorio",
+    lastnameRequired: "El apellido es obligatorio",
     dniRequired: "El DNI es obligatorio",
     dniMax: "El DNI no puede tener más de 12 caracteres",
     dniInvalid: "El DNI solo puede contener números",

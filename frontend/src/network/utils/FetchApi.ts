@@ -3,7 +3,6 @@ export type FetchMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 export interface FetchOptions<TBody = unknown> {
   method?: FetchMethod; // Méthods HTTP (por defecto GET)
   body?: TBody;
-  token?: string | null; // Token JWT (if endpoint require Auth)
 }
 
 // Generic function reutilizable
@@ -11,14 +10,16 @@ export async function apiFetch<TData = unknown, TBody = unknown>(
   endpoint: string,
   options: FetchOptions<TBody> = {}
 ): Promise<{ ok: boolean; data: TData | null; error?: string }> {
-  console.log(endpoint);
+  const baseUrl = "/api";
+  const url = `${baseUrl}${endpoint}`;
+
+  console.log("🔗 Fetching:", url, options);
+
   try {
-    const res = await fetch(endpoint, {
-      method: options.method || "GET", // method ? get : method
+    const res = await fetch(url, {
+      method: options.method || "GET",
       headers: {
         "Content-Type": "application/json",
-        // Send Token
-        ...(options.token ? { Authorization: `Bearer ${options.token}` } : {}),
       },
       ...(options.body ? { body: JSON.stringify(options.body) } : {}),
     });
@@ -40,9 +41,7 @@ export async function apiFetch<TData = unknown, TBody = unknown>(
   }
 }
 
-
 //Example Whit Get And Post
-
 
 // export const getAllUsers = async () => {  //la fucnion retorna : ok(bolean), data(si se tipa toma el dato que se manda), error?(si llega un error)
 //   return apiFetch<Users[]>("http:localhost/3000/api/users"); //FetchApi permite tipar el tipo de datos de data, sino se tipa queda unknown
@@ -50,7 +49,7 @@ export async function apiFetch<TData = unknown, TBody = unknown>(
 
 // export const createUser = async (body: createUserBody) => {
 //   return apiFetch<User>("http:localhost/3000/api/users", {
-//     method: "POST", //Al ser metodo POST se declara 
+//     method: "POST", //Al ser metodo POST se declara
 //     body, // al requerir un cuerpo se manda de esta manera
 //   });
 // };

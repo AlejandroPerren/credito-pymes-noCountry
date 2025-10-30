@@ -232,6 +232,16 @@
   --leading-brand-p: 1.5;
   --leading-brand-p-small: 1.5;
   --leading-brand-p-mini: 1.5;
+
+  /* OTROS */
+  /* Estrellas */
+  --color-star: var(--primitive-yellow-500);
+  /* Credit Status */
+  --color-new-credit: var(--primitive-blue-900);
+  --color-pending-credit: var(--primitive-yellow-900);
+  --color-review-credit: var(--primitive-yellow-700);
+  --color-approved-credit: var(--primitive-green-900);
+  --color-rejected-credit: var(--primitive-red-900);
 }
 
 @layer utilities {
@@ -265,6 +275,10 @@
 
   .paragraph-small {
     @apply text-brand-p-small leading-brand-p-small;
+  }
+
+  .paragraph-small-medium {
+    @apply text-brand-p-small leading-brand-p-small font-medium;
   }
 
   .paragraph-mini {

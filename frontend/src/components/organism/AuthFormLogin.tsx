@@ -10,9 +10,20 @@ import Link from "next/link";
 import { TEXTS } from "@/utils/consts/login";
 import { LoginFormData, loginSchema } from "@/utils/types/login";
 import { ROUTES } from "@/utils/config/routesApp/routes";
-import { useNavigateApp } from "@/utils/hooks/useNavigate";
+import { apiFetch } from "@/network/utils/FetchApi";
+import { redirect } from "next/navigation";
+import { LoggedUser, LoggedUserStatus } from "@/utils/types/loggedUser";
+import { useGlobalContext } from "@/store/globalContext";
+import { loginUser, loginUserLoading } from "@/store/globalContextActions";
+import { useEffect } from "react";
 
 export const AuthFormLogin = () => {
+  const {
+    state: {
+      loggedUser: { user, status },
+    },
+    dispatch,
+  } = useGlobalContext();
   const {
     register,
     handleSubmit,
@@ -23,15 +34,41 @@ export const AuthFormLogin = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const { toDashboard } = useNavigateApp();
-
   const remember = watch("remember", false);
 
   const onSubmit = async (data: LoginFormData) => {
-    console.log("Datos enviados ✅", data);
-    await new Promise((res) => setTimeout(res, 1500));
-    toDashboard();
+    const response = await apiFetch<{ role: LoggedUserStatus; firstname: string; lastname: string }>("/auth/login", {
+      method: "POST",
+      body: { email: data.email, pass: data.password },
+    });
+
+    if (response.ok && response.data) {
+      const loggedUser: LoggedUser = {
+        username: `${response.data.firstname} ${response.data.lastname}`,
+        role: response.data.role,
+      };
+
+      localStorage.setItem("loggedUser", JSON.stringify(loggedUser));
+
+      dispatch(loginUserLoading());
+      dispatch(loginUser(loggedUser));
+    } else {
+      // Handle login error
+      console.error("Login failed:", response.error);
+    }
   };
+
+  useEffect(() => {
+    if (user && status !== "loading") {
+      if (user.role === "ADMIN") {
+        redirect("/admin");
+      }
+
+      if (user.role === "USER") {
+        redirect("/user");
+      }
+    }
+  }, [user, status]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -58,22 +95,14 @@ export const AuthFormLogin = () => {
           <Checkbox
             id="remember"
             checked={remember}
-            onCheckedChange={(checked) =>
-              setValue("remember", checked as boolean)
-            }
+            onCheckedChange={(checked) => setValue("remember", checked as boolean)}
           />
-          <label
-            htmlFor="remember"
-            className="text-gray-300 cursor-pointer select-none"
-          >
+          <label htmlFor="remember" className="text-gray-300 cursor-pointer select-none">
             {TEXTS.labels.remember}
           </label>
         </div>
 
-        <Link
-          href="/forgot-password"
-          className="text-blue-400 hover:underline font-medium"
-        >
+        <Link href="/forgot-password" className="text-blue-400 hover:underline font-medium">
           {TEXTS.links.forgotPassword}
         </Link>
       </div>
@@ -84,26 +113,14 @@ export const AuthFormLogin = () => {
         {isSubmitting ? TEXTS.buttons.submitting : TEXTS.buttons.submit}
       </Button>
 
-      <Button
-        type="button"
-        variant="ghost"
-        className="w-full text-blue-400 hover:text-blue-300"
-        asChild
-      >
+      <Button type="button" variant="ghost" className="w-full text-blue-400 hover:text-blue-300" asChild>
         <Link href={ROUTES.AUTH.REGISTER}>{TEXTS.buttons.register}</Link>
       </Button>
 
-      <Button
-        type="button"
-        variant="outline"
-        className="w-full text-gray-300 hover:text-white"
-        asChild
-      >
+      <Button type="button" variant="outline" className="w-full text-gray-300 hover:text-white" asChild>
         <Link href={ROUTES.HELP.CONTACT}>{TEXTS.buttons.help}</Link>
       </Button>
-      <p className="text-xs text-center text-gray-500 mt-3">
-        {TEXTS.footer.message}
-      </p>
+      <p className="text-xs text-center text-gray-500 mt-3">{TEXTS.footer.message}</p>
     </form>
   );
 };

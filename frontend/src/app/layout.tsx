@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import NavBar from "@/components/organism/NavBar";
+import { GlobalContextProvider } from "@/store/globalContext";
+import { ModalProvider } from "@/store/modalContext";
+import ReusableModal from "@/components/molecules/ReusableModal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,14 +26,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        suppressHydrationWarning
-      >
-        <NavBar />
-        {children}
-      </body>
+    <html lang="en" className="scroll-smooth">
+      <GlobalContextProvider>
+        <ModalProvider>
+          <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
+            {children}
+            <ReusableModal />
+          </body>
+        </ModalProvider>
+      </GlobalContextProvider>
     </html>
   );
 }
