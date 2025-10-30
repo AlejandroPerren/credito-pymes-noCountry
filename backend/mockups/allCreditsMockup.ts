@@ -119,4 +119,18 @@ export const allCreditsMockup = [
     requestDate: '22/10/2025',
     status: 'NEW',
   },
+  {
+    id: 27,
+    dni: '45343778',
+    company: {
+      businessName: 'EMPRESA NUEVA',
+      taxId: '123.456.789-0',
+      adress: 'Calle Falsa 123',
+      phone: '123456789',
+      activity: 'Actividad de la empresa',
+    },
+    requestedAmount: 100000.0,
+    requestDate: '29/10/2025',
+    status: 'NEW',
+  },
 ];
